@@ -16,16 +16,18 @@ private:
 	Funcionario funcionario;
 
 public:
-
+	
 	Biblioteca();
 	~Biblioteca();
-	void loginUsuario();
-	void loginfuncionario();
 	void interfacePrincipal();
 	void determinaInterface();
 	void interfaceUsuario();
+	void loginUsuario();
 	void interfaceFuncionario();
+	void loginfuncionario();
 	void desalocaDados();
+
+
 
 };
 
