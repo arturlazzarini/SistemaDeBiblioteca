@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include "Pessoa.hpp"
 
 using std::cout;
 using std::endl;
