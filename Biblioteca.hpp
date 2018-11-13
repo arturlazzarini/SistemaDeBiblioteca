@@ -17,8 +17,8 @@ private:
 
 public:
 
-	Sistema();
-	~Sistema();
+	Biblioteca();
+	~Biblioteca();
 	void loginUsuario();
 	void loginfuncionario();
 	void interfacePrincipal();
