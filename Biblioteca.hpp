@@ -8,6 +8,7 @@
 #include "Funcionario.hpp"
 #include "Gerencia.hpp"
 #include "Usuario.hpp"
+#include "Acervo.hpp"
 
 using std::cout;
 using std::cin;
@@ -20,7 +21,8 @@ private:
 
 	Usuario *usuario;
 	Funcionario *funcionario;
-	Gerencia *administrador; 
+	Gerencia *administrador;
+	Acervo *acervo;	
 
 public:
 	
@@ -31,7 +33,7 @@ public:
 	int telaInicial(int tipoUsuario);
 	void menuUsuario(int &acesso);
 	void menuFuncionario(int &acesso);
-	int login(Pessoa *p,Gerencia *adm,int tipoUsuario);
+	int login(Pessoa *p,int tipoUsuario);
 	void interfaceFuncionario();
 	void desalocaDados();
 
