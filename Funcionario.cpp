@@ -1,14 +1,18 @@
 #include "Funcionario.hpp"
 #include "Gerencia.hpp"
 
-class Funcionario : public Pessoa{
+//Adiciona novos itens ao acervo da biblioteca
+void Funcionario::adicionarItem(string titulo, string autor, string prod){
+	
+}
 
-	public:
-		void adicionarItem(string titulo, string autor, string prod){}
-		void removerItem(string item){}  
-		void cadastrarUsuario(Gerencia adm, string nome, string senha, string id){
-			Pessoa novo(nome, senha, id);
-			adm.setUsuariosCadastrados(novo);
-		}
+//Remove novos itens ao acervo da biblioteca
+void Funcionario::removerItem(string item){
+	
+}
 
+//Cadastra novos usuários e os adiciona à gerencia
+void Funcionario::cadastrarUsuario(Gerencia adm, string nome, string senha, string id){
+	Pessoa novo(nome, senha, id);
+	adm.setUsuariosCadastrados(novo);
 }
