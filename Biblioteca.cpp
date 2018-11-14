@@ -22,7 +22,7 @@ Biblioteca::~Biblioteca(){
 
 void Biblioteca::interfacePrincipal(){
 	
-    usuario = new Usuario(); 
+        usuario = new Usuario(); 
 	funcionario = new Funcionario();
 	administrador= new Gerencia();
 	acervo= new Acervo();
@@ -33,11 +33,16 @@ void Biblioteca::interfacePrincipal(){
 //identifica o tipo da pessoa que acessa o sistema para disponibilizar sua respectiva interface
 void Biblioteca::determinaInterface(){
 	
-	cout<<"Voce deseja acessar o sistema como:"<<endl;
-	cout<<"Usuario da Biblioteca(1)"<<endl;
-	cout<<"Funcionario da Biblioteca(2)"<<endl;
+	int interface = 0;
 	
-	cin>>int interface;
+	while(interfacea<1||interface>2){
+		
+		cout<<"Voce deseja acessar o sistema como:"<<endl;
+		cout<<"Usuario da Biblioteca(1)"<<endl;
+		cout<<"Funcionario da Biblioteca(2)"<<endl;
+
+		cin>>interface;
+	}
 	
 	interfaceUsuario(interface);
 }
@@ -69,24 +74,27 @@ void Biblioteca::interfaceUsuario(int interfaceTipo){
 //Tela de inicio comum à interface do usuario e à interface do funcionario
 int Biblioteca::telaInicial(int tipoUsuario){
 	
-	int telaInicio=1
-	int acessoPermitido=0;
-	
+	int telaInicio = 1
+	int acessoPermitido = 0;
+	char c = ' ';
 	while(telaInicio){
 		
-		try{	
-			cout<<"Voce possui cadastro na biblioteca?(s/n)"<<endl;
-			cin>>char c;
-				
-			if(c == 's'){
-				
-				acessoPermitido=login(usuario,administrador,tipoUsuario)
-				return acessoPermitido;
-			}
+		try{
+			while(c != 'n' && c != 's'){	
+			
+				cout<<"Voce possui cadastro na biblioteca?(s/n)"<<endl;
+				cin>> c;
 					
-			if(c == 'n')
-				throw LoginInvalido();
+				if(c == 's'){
+					
+					acessoPermitido=login(usuario,administrador,tipoUsuario)
+					return acessoPermitido;
+				}
+						
+				if(c == 'n')
+					throw LoginInvalido();
 			}
+		}
 			
 			catch(LoginInvalido& invalido){
 					
@@ -133,17 +141,21 @@ int Biblioteca::login(Pessoa *p,int tipoUsuario){
 void Biblioteca::menuUsuario(){
 	
 	int menu=1;
+	int operacao=0;
 	
 	while(menu){
 		
-		cout<<"Qual operacao voce deseja realizar?(1/2/3/4)"<<endl;
-		
-		cout<<"Reservar itens(1)"<<endl;
-		cout<<"Alugar itens(2)"<<endl;
-		cout<<"Devolver itens(3)"<<endl;
-		cout<<"Sair do sistema(4)"<<endl;
-		
-		cin>>int operacao;
+		while(operacao<1||operacao>4){
+			
+			cout<<"Qual operacao voce deseja realizar?(1/2/3/4)"<<endl;
+			
+			cout<<"Reservar itens(1)"<<endl;
+			cout<<"Alugar itens(2)"<<endl;
+			cout<<"Devolver itens(3)"<<endl;
+			cout<<"Sair do sistema(4)"<<endl;
+			
+			cin>>operacao;
+		}
 		
 		if(operacao==1)
 			usuario->reservarItens();
@@ -160,18 +172,23 @@ void Biblioteca::menuUsuario(){
 }
 
 void Biblioteca::menuFuncionario(){
+	
 		int menu=1;
+		int operacao=0;
 	
 	while(menu){
 		
-		cout<<"Qual operacao voce deseja realizar?(1/2/3/4)"<<endl;
-		
-		cout<<"Adicionar itens do acervo da bibliteca(1)"<<endl;
-		cout<<"Remover itens do acervo da biblioteca(2)"<<endl;
-		cout<<"Cadastrar novo usuario da biblioteca(3)"<<endl;
-		cout<<"Sair do sistema(4)"<<endl;
-		
-		cin>>int operacao;
+		while(operacao<1||operacao>4){
+			
+			cout<<"Qual operacao voce deseja realizar?(1/2/3/4)"<<endl;
+			
+			cout<<"Adicionar itens do acervo da bibliteca(1)"<<endl;
+			cout<<"Remover itens do acervo da biblioteca(2)"<<endl;
+			cout<<"Cadastrar novo usuario da biblioteca(3)"<<endl;
+			cout<<"Sair do sistema(4)"<<endl;
+			
+			cin>>operacao;
+		}
 		
 		if(operacao==1)
 			funcionario->adicionarItens();
