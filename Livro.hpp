@@ -5,7 +5,7 @@
 
 class Livro : public Item{
 	private:
-		int _itensDisponiveis;
+		int _itensDisponiveis = 0;
 
 	public:
 		void setItensDisponiveis(int quantidade){}
