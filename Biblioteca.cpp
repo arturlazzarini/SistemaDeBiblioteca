@@ -22,10 +22,12 @@ Biblioteca::~Biblioteca(){
 
 void Biblioteca::interfacePrincipal(){
 	
-        usuario = new Usuario(); 
+    usuario = new Usuario(); 
 	funcionario = new Funcionario();
 	administrador= new Gerencia();
 	acervo= new Acervo();
+	
+	
 	
 	determinaInterface();
 }
@@ -35,7 +37,7 @@ void Biblioteca::determinaInterface(){
 	
 	int interface = 0;
 	
-	while(interfacea<1||interface>2){
+	while(interfacea<pessoaUsuario||interface>pessoaFuncionario){
 		
 		cout<<"Voce deseja acessar o sistema como:"<<endl;
 		cout<<"Usuario da Biblioteca(1)"<<endl;
@@ -77,6 +79,7 @@ int Biblioteca::telaInicial(int tipoUsuario){
 	int telaInicio = 1
 	int acessoPermitido = 0;
 	char c = ' ';
+	
 	while(telaInicio){
 		
 		try{
@@ -87,7 +90,7 @@ int Biblioteca::telaInicial(int tipoUsuario){
 					
 				if(c == 's'){
 					
-					acessoPermitido=login(usuario,administrador,tipoUsuario)
+					acessoPermitido=login(usuario,tipoUsuario);
 					return acessoPermitido;
 				}
 						
@@ -102,7 +105,7 @@ int Biblioteca::telaInicial(int tipoUsuario){
 				cin>>char cadastrar;
 					
 				if(cadastrar == 's')
-					funcionario->cadastrarUsuario(usuario);
+					usuario->cadastrarUsuario(usuario);
 					
 				if(cadastrar == 'n')
 					telaInicio=0;	
