@@ -66,7 +66,7 @@ void Biblioteca::interfaceUsuario(int interfaceTipo){
 				menuUsuario(acesso);
 			
 			if(interface == pessoaUsuario)
-				menuFuncionario;
+				menuFuncionario(acesso);
 		}
 	}
 }
