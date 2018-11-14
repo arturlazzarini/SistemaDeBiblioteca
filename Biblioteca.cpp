@@ -9,6 +9,7 @@ Biblioteca::Biblioteca(){
 	usuario = nullptr;
 	funcionario = nullptr;
 	administrador = nullptr;
+	acervo = nullptr;
 }
 	
 Biblioteca::~Biblioteca(){
@@ -16,6 +17,7 @@ Biblioteca::~Biblioteca(){
 	delete usuario;
 	delete funcionario;
 	delete administrador;
+	delete acervo;
 }
 
 void Biblioteca::interfacePrincipal(){
@@ -23,6 +25,7 @@ void Biblioteca::interfacePrincipal(){
     usuario = new Usuario(); 
 	funcionario = new Funcionario();
 	administrador= new Gerencia();
+	acervo= new Acervo();
 	
 	determinaInterface();
 }
@@ -49,8 +52,8 @@ void Biblioteca::interfaceUsuario(int interfaceTipo){
 		
 		acesso=telaInicial(interfaceTipo);
 		
-		if(acesso==0)
-			cout<<"Acesso Negado"<<endl;
+		if(acesso == 0)
+			cout<<"Acesso Negado: Falha em realizar o login"<<endl;
 
 		while(acesso){
 			
@@ -91,7 +94,7 @@ int Biblioteca::telaInicial(int tipoUsuario){
 				cin>>char cadastrar;
 					
 				if(cadastrar == 's')
-					funcionario.cadastrarUsuario(usuario);
+					funcionario->cadastrarUsuario(usuario);
 					
 				if(cadastrar == 'n')
 					telaInicio=0;	
@@ -102,7 +105,7 @@ int Biblioteca::telaInicial(int tipoUsuario){
 }	
 
 //login retorna 1 caso o acesso seja valido
-int Biblioteca::login(Pessoa *p, Gerencia *administracao,int tipoUsuario){
+int Biblioteca::login(Pessoa *p,int tipoUsuario){
 	
 	cout<<"Digite O seu ID e sua senha"<<endl;
 	
@@ -129,10 +132,59 @@ int Biblioteca::login(Pessoa *p, Gerencia *administracao,int tipoUsuario){
 
 void Biblioteca::menuUsuario(){
 	
+	int menu=1;
+	
+	while(menu){
+		
+		cout<<"Qual operacao voce deseja realizar?(1/2/3/4)"<<endl;
+		
+		cout<<"Reservar itens(1)"<<endl;
+		cout<<"Alugar itens(2)"<<endl;
+		cout<<"Devolver itens(3)"<<endl;
+		cout<<"Sair do sistema(4)"<<endl;
+		
+		cin>>int operacao;
+		
+		if(operacao==1)
+			usuario->reservarItens();
+		
+		if(operacao==2)	
+			usuario->alugarItens();
+		
+		if(operacao==3)	
+			usuario->devolverItens();
+		
+		if(operacao==4)
+			menu=0;
+	}	
 }
 
 void Biblioteca::menuFuncionario(){
+		int menu=1;
 	
+	while(menu){
+		
+		cout<<"Qual operacao voce deseja realizar?(1/2/3/4)"<<endl;
+		
+		cout<<"Adicionar itens do acervo da bibliteca(1)"<<endl;
+		cout<<"Remover itens do acervo da biblioteca(2)"<<endl;
+		cout<<"Cadastrar novo usuario da biblioteca(3)"<<endl;
+		cout<<"Sair do sistema(4)"<<endl;
+		
+		cin>>int operacao;
+		
+		if(operacao==1)
+			funcionario->adicionarItens();
+		
+		if(operacao==2)	
+			funcionario->removerItens();
+		
+		if(operacao==3)	
+			funcionario->cadastrarUsuario();
+		
+		if(operacao==4)
+			menu=0;
+	}	
 }
 
 void Biblioteca::desalocaDados(){
