@@ -16,3 +16,6 @@ class Usuario : public Pessoa{
 		void devolverItem(string item){}
 
 }
+
+#endif
+
