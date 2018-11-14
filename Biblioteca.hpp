@@ -3,7 +3,9 @@
 
 #include <iostream>
 #include <cstdlib>
-#include "Pessoa.hpp"
+#include "Funcionario.hpp"
+#include "Gerencia.hpp"
+#include "Usuario.hpp"
 
 using std::cout;
 using std::endl;
@@ -15,6 +17,7 @@ private:
 
 	Usuario usuario;
 	Funcionario funcionario;
+	Gerencia administrador; 
 
 public:
 	
