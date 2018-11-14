@@ -3,11 +3,13 @@
 
 #include <iostream>
 #include <cstdlib>
+#include "Pessoa.hpp"
 #include "Funcionario.hpp"
 #include "Gerencia.hpp"
 #include "Usuario.hpp"
 
 using std::cout;
+using std::cin;
 using std::endl;
 using std::string;
 
@@ -15,9 +17,9 @@ class Biblioteca{
 
 private:
 
-	Usuario usuario;
-	Funcionario funcionario;
-	Gerencia administrador; 
+	Usuario *usuario;
+	Funcionario *funcionario;
+	Gerencia *administrador; 
 
 public:
 	
@@ -26,12 +28,23 @@ public:
 	void interfacePrincipal();
 	void determinaInterface();
 	void interfaceUsuario();
-	void login();
+	int login(Pessoa *p);
 	void interfaceFuncionario();
 	void desalocaDados();
 
+};
 
+class LoginInvalidoError: public std::exception{
+
+        virtual const char* what()const throw(){
+
+            return "LoginInvalidoError";
+
+        }
 
 };
 
 #endif
+
+
+
