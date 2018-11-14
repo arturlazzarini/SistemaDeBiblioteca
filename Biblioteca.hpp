@@ -28,7 +28,7 @@ public:
 	~Biblioteca();
 	void interfacePrincipal();
 	void interfaceUsuario(int interfaceTipo);
-	void telaInicial();
+	int telaInicial();
 	void menuUsuario(int &acesso);
 	void menuFuncionario(int &acesso);
 	int login(Pessoa *p,Gerencia *adm,int tipoUsuario);
