@@ -28,16 +28,18 @@ public:
 	~Biblioteca();
 	void interfacePrincipal();
 	void interfaceUsuario(int interfaceTipo);
-	int telaInicial();
+	int telaInicial(int tipoUsuario);
 	void menuUsuario(int &acesso);
 	void menuFuncionario(int &acesso);
 	int login(Pessoa *p,Gerencia *adm,int tipoUsuario);
+	void interfaceFuncionario();
 	void desalocaDados();
 
 };
 class LoginInvalido: public std::exception{
 
         virtual const char* what()const throw(){
+
             return "LoginInvalido";
         }
 };
