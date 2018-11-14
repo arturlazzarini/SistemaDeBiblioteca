@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <exception>
 #include "Pessoa.hpp"
 #include "Funcionario.hpp"
 #include "Gerencia.hpp"
@@ -26,25 +27,21 @@ public:
 	Biblioteca();
 	~Biblioteca();
 	void interfacePrincipal();
-	void determinaInterface();
-	void interfaceUsuario();
-	int login(Pessoa *p);
+	void interfaceUsuario(int interfaceTipo);
+	void telaInicial();
+	void menuUsuario();
+	void menuFuncionario();
+	int login(Pessoa *p,Gerencia *adm,int tipoUsuario);
 	void interfaceFuncionario();
 	void desalocaDados();
 
 };
-
-class LoginInvalidoError: public std::exception{
+class LoginInvalido: public std::exception{
 
         virtual const char* what()const throw(){
 
-            return "LoginInvalidoError";
-
+            return "LoginInvalido";
         }
-
 };
 
 #endif
-
-
-
