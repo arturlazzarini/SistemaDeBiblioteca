@@ -49,7 +49,7 @@ void Biblioteca::interfaceUsuario(int interfaceTipo){
 				menuUsuario(acesso);
 			
 			if(interface==2)
-				menuFuncionario;
+				menuFuncionario(acesso);
 		}
 	}
 }
