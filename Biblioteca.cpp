@@ -118,9 +118,15 @@ int Biblioteca::telaInicial(int tipoUsuario){
 //login retorna 1 caso o acesso seja valido
 int Biblioteca::login(Pessoa *p,int tipoUsuario){
 	
+	string nomeUsuario;
+	string senhaUsuario
+	
 	cout<<"Digite O seu ID e sua senha"<<endl;
 	
-	cin>>p->nome>>p->senha;
+	cin>>nomeUsuario>>senhaUsuario;
+	
+	p->setNome(nomeUsuario);
+	p->setSenha(nomeUsuario);
 	
 	if(tipoUsuario == pessoaUsuario){
 		
