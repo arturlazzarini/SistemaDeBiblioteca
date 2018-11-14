@@ -32,7 +32,6 @@ public:
 	void menuUsuario(int &acesso);
 	void menuFuncionario(int &acesso);
 	int login(Pessoa *p,Gerencia *adm,int tipoUsuario);
-	void interfaceFuncionario();
 	void desalocaDados();
 
 };
