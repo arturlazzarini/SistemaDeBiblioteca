@@ -39,7 +39,6 @@ public:
 class LoginInvalido: public std::exception{
 
         virtual const char* what()const throw(){
-
             return "LoginInvalido";
         }
 };
