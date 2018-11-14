@@ -26,8 +26,7 @@ public:
 	void interfacePrincipal();
 	void determinaInterface();
 	void interfaceUsuario();
-	void loginUsuario();
-	void interfaceFuncionario();
+	void login();
 	void loginfuncionario();
 	void desalocaDados();
 
