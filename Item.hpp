@@ -49,6 +49,9 @@ class Item{
 
 		
 		int getQuantidadeItens();
+	
+		void imprimeItem();
+
 
 
 }
