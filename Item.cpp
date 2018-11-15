@@ -1,65 +1,41 @@
 #include "Item.hpp"
 
-
-
-
-	void Item::setTitulo(string titulo){
-			this->_titulo = titulo;
-	}
+void Item::setTitulo(string titulo){
+		this->_titulo = titulo;
+}
 		
-	void Item::setAutor(string autor){
-			this->_autor = autor;
-	}
+void Item::setAutor(string autor){
+		this->_autor = autor;
+}
 		
-	void Item::setEditora(string editora){
-			this->_editora = editora;
-	}
+void Item::setEditora(string editora){
+		this->_editora = editora;
+}
 		
-	void Item::setCodigo(codigo){
+void Item::setCodigo(codigo){
+		this->_codigo = codigo;
+}
 		
-			this->_codigo = codigo;
-	}
+string Item::getTitulo(){
+		return _titulo;
+}
 		
-	void Item::setQuantidadeItens(int quantidade){
-			this->_quantidadeItens += quantidade;
-
-	}
+string Item::getAutor(){
+		return _autor;
+}
 		
-	string Item::getTitulo(){
-			return _titulo;
-
-	}
+string Item::getEditora(){
+		return _editora;
+}
 		
-	string Item::getAutor(){
-			return _autor;
-
-	}
+int Item::getCodigo(){
+		return _codigo;
+}
 		
-	string Item::getEditora(){
-			return _editora;
+void Item::imprimeCampos(){
 
-	}
-		
-	int Item::getCodigo(){
-			return _codigo;
-
-	}
-		
-	int Item::getQuantidadeItens(){
-			return _quantidadeItens;
-
-	}
-
-
-	void Item::imprimeItem(){
-
-		cout<<"\nTítulo : "<<getTitulo()<<endl;
-		cout<<"Autor : "<<getAutor()<<endl;
-		cout<<"Editora : "<<getEditora()<<endl;
-		cout<<"Codigo : "<<getCodigo()<<endl;
-		//quantidade de itens vem aq ?
-		//cout<<"quantidade disponivel : "<<getQuantidadeItens()<<endl;
-	}
-
-
-	
+	cout<<"Título : "<<getTitulo()<<endl;
+	cout<<"Autor : "<<getAutor()<<endl;
+	cout<<"Editora : "<<getEditora()<<endl;
+	cout<<"Codigo : "<<getCodigo()<<endl;
+}
