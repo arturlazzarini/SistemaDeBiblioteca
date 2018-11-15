@@ -23,6 +23,10 @@ class Acervo{
 		Acervo(int acervoTotalLivro, int acervoTotalMultimidia, Item acervolivro[],Item acervoMultimidia[]);
 		void setAcervoTotal(int acervoLivro,int acervoMultimidia);
 		int getAcervoTotal();
+		void adicionaLivro(Item x);
+		void removeLivro(Item x);
+		void adicionaMultimidia(Item x);
+		void removeMultimidia(Item x);
 		void listarLivros();
 		void listarMultimidia();
 		void imprimeItens();
