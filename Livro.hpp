@@ -6,9 +6,11 @@
 class Livro : public Item{
 	private:
 		int _itensDisponiveis = 0;
+		bool _disponivel;
 
 	public:
-		void setItensDisponiveis(int quantidade){}
+		void setItensDisponiveis(int);
+		bool isDisponivel();
 
 }
 
