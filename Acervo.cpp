@@ -2,7 +2,17 @@
 
 
 
+	
 
+	Acervo(int acervoTotalLivro, int acervoTotalMultimidia, Item acervolivro[],Item acervoMultimidia[]){
+	
+	
+		this->_acervoTotalLivro = acervoTotalLivro;
+		this->_acervoTotalMultimidia = acervoTotalMultimidia;
+		//como sera a inicializaçao do acervo ?	
+	
+	
+	}
 
 
 	void Acervo::setAcervoTotal(int acervoLivro,int acervoMultimidia){
