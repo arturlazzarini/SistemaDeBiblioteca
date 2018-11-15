@@ -149,3 +149,11 @@ void Acervo::reservarLivro(Livro livro){
 		}
 }
 
+void Acervo::reservarMultimidia(Multimidia multimidia){
+	
+	for(i=0;i < _acervoTotalMultimidia;i++){
+			
+			if(_acervoMultimidia[i].getTitulo() == multimidia.getTitulo() && _acervoMultimidia[i].getAutor() == multimidia.getAutor())
+				_acervoMultimidia[i].reservar();
+		}
+}
