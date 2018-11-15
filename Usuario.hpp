@@ -3,19 +3,20 @@
 
 #include "Pessoa.hpp"
 #include "item.hpp"
-
-
-
+#include <vector>
 
 class Usuario : public Pessoa{
 
+	private:
+		Vector<Livros> _livrosAlugados;
+		Vector<Multimidia> _multimidiaAlugados;
+
 	public:
 		//void buscaItem(string Autor,string Nome, string );
-		void alugarItem(string item){}
-		void reservarItem(string item){}
-		void devolverItem(string item){}
-
+		void alugarLivro(string);
+		void devolverLivro(string);
+		void alugarMultimidia(string);
+		void alugarMultimidia(string);
 }
 
 #endif
-
