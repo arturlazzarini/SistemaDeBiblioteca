@@ -6,8 +6,8 @@
 
 using namespace std;
 
-
 class Pessoa{
+	
 	private:
 		string _nome;
 		string _senha;
@@ -34,13 +34,6 @@ class Pessoa{
 		
 		string getId();
 
-}
-
-
-
-
-
-
-
-
+};
+	
 #endif
