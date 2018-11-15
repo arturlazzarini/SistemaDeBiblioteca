@@ -9,6 +9,7 @@ bool Multimidia::isDisponivel(){
 }
 
 void Multimidia::imprimeCampos(){
+
 	cout<<"Título : "<<getTitulo()<<endl;
 	cout<<"Autor : "<<getAutor()<<endl;
 	cout<<"Editora : "<<getEditora()<<endl;
