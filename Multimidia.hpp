@@ -6,7 +6,6 @@
 class Multimidia : public Item{
 	private:
 		int _itensDisponiveis = 0;
-		string _tipoMultimidia;
 		
 	public:
 		void setItensDisponiveis(int quantidade){}
