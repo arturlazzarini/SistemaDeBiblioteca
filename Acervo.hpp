@@ -33,7 +33,8 @@ class Acervo{
 		void listarMultimidia();
 		void procurarLivro(Livro);
 		void procurarMultimidia(Multimidia);
-		void reservarLivro(Livro)
+		void reservarLivro(Livro);
+		void reservarMultimidia(Multimidia);
 }
 
 #endif
