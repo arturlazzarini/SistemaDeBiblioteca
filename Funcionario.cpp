@@ -19,7 +19,7 @@ void Funcionario::removerLivro(Acervo *acervo,string titulo, string autor, strin
 void Funcionario::cadastrarUsuario(Gerencia *adm, string nome, string senha, string id){
 	
 	Usuario novo(nome, senha, id);
-	adm.setUsuariosCadastrados(novo);
+	adm->setUsuarioCadastrado(novo);
 }
 
 //Cadastra novos usuários e os adiciona à gerencia
