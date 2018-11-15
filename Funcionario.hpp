@@ -1,20 +1,18 @@
 #ifndef FUNCIONARIO_HPP
 #define FUNCIONARIO_HPP
 
-#include "Pessoa.hpp"
-#include "Item.hpp"
+#include "Gerencia.hpp"
+#include "Usuario.hpp"
+#include "Acervo.hpp"
 
 class Funcionario : public Pessoa{
 
     public:
-		void adicionarItem(Item x);
-		void removerItem(Item x);
-		void cadastrarUsuario(Gerencia adm, string nome, string senha, string id){
-			Pessoa novo(nome, senha, id);
-			adm.setUsuariosCadastrados(novo);
-		};
-
-}
-
+	
+		void adicionarItem(Acervo *acervo,string titulo, string autor, string prod);
+		void removerItem(Acervo *acervo,string item);
+		void cadastrarUsuario(Gerencia *adm, string nome, string senha, string id);
+		void cadastrarFuncionario(Gerencia *adm, string nome, string senha, string id);
+};
 
 #endif
