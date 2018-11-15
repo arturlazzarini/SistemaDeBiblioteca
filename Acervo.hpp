@@ -1,42 +1,39 @@
 #ifndef ACERVO_HPP
 #define ACERVO_HPP
 
-
-#include "item.hpp"
-#include "Pessoa.hpp"
+#include "Livro.hpp"
+#include "Multimidia.hpp"
 #include <vector>
 #include <iostream>
 
 using namespace std;
 
-
-
 class Acervo{
+	
 	private:
 		int _acervoTotalLivro;
 		int _acervoTotalMultimidia;
-		vector <Item> acervoLivro;
-		vector <Item> acervoMultimidia;
+		vector <Livro> _acervoLivro;
+		vector <Multimidia> _acervoMultimidia;
 
 	public:
 
-		Acervo(int acervoTotalLivro, int acervoTotalMultimidia, Item acervolivro[],Item acervoMultimidia[]);
-		void setAcervoTotal(int acervoLivro,int acervoMultimidia);
+		Acervo();
+		void adicionarMultimidia(Multimidia);
+		void adicionarLivro(Livro);
+		void removerLivro(Livro);
+		void removerMultimidia(Multimidia);
+		void setAcervoTotal(int,int);
+		void setAcervoTotalLivro(int);
+		void setAcervoTotalMultimidia(int);
 		int getAcervoTotal();
-		void adicionaLivro(Item x);
-		void removeLivro(Item x);
-		void adicionaMultimidia(Item x);
-		void removeMultimidia(Item x);
+		int getAcervoTotalLivro();
+		int getAcervoTotalMuktimidia();
 		void listarLivros();
 		void listarMultimidia();
-		void imprimeItens();
-		void procurarLivro(Item x);
-		void procurarMultimidia(Item x);
+		void procurarLivro(Livro);
+		void procurarMultimidia(Multimidia);
+		void reservarLivro(Livro)
 }
 
-
-
-
 #endif
-
-
