@@ -26,9 +26,7 @@ void Biblioteca::interfacePrincipal(){
 	funcionario = new Funcionario();
 	administrador= new Gerencia();
 	acervo= new Acervo();
-	
-	
-	
+
 	determinaInterface();
 }
 
@@ -103,7 +101,7 @@ int Biblioteca::telaInicial(int tipoUsuario){
 					
 				cout<<"Voce deseja realizar um cadastro na biblioteca?(s/n)"<<endl;
 				cin>>char cadastrar;
-					
+//------------------------------------------------------------------------------------------------------					
 				if(cadastrar == 's')
 					usuario->cadastrarUsuario(usuario);
 					
@@ -126,11 +124,11 @@ int Biblioteca::login(Pessoa *p,int tipoUsuario){
 	cin>>nomeUsuario>>senhaUsuario;
 	
 	p->setNome(nomeUsuario);
-	p->setSenha(nomeUsuario);
+	p->setSenha(senhaUsuario);
 	
 	if(tipoUsuario == pessoaUsuario){
 		
-		if()
+		if(pesquisaUsuario())
 			return 1;
 		
 		else
@@ -139,7 +137,7 @@ int Biblioteca::login(Pessoa *p,int tipoUsuario){
 		
 	if(tipoUsuario == pessoaFuncionario){
 		
-		if()
+		if(pesquisaFuncionario())
 			return 1;
 		
 		else
@@ -187,28 +185,40 @@ void Biblioteca::menuFuncionario(){
 	
 	while(menu){
 		
-		while(operacao<1||operacao>4){
+		while(operacao<1||operacao>7){
 			
-			cout<<"Qual operacao voce deseja realizar?(1/2/3/4)"<<endl;
+			cout<<"Qual operacao voce deseja realizar?(1/2/3/4/5/6/7)"<<endl;
 			
-			cout<<"Adicionar itens do acervo da bibliteca(1)"<<endl;
-			cout<<"Remover itens do acervo da biblioteca(2)"<<endl;
-			cout<<"Cadastrar novo usuario da biblioteca(3)"<<endl;
-			cout<<"Sair do sistema(4)"<<endl;
+			cout<<"Adicionar livro ao acervo da bibliteca(1)"<<endl;
+			cout<<"Remover livro do acervo da biblioteca(2)"<<endl;
+			cout<<"Adicionar multimidia do acervo da bibliteca(3)"<<endl;
+			cout<<"Remover multimidia do acervo da biblioteca(4)"<<endl;
+			cout<<"Cadastrar novo usuario da biblioteca(5)"<<endl;
+			cout<<"Cadastrar novo funcionario da biblioteca(6)"<<endl;
+			cout<<"Sair do sistema(7)"<<endl;
 			
 			cin>>operacao;
 		}
 		
 		if(operacao==1)
-			funcionario->adicionarItens();
+			funcionario->adicionarLivro();
 		
 		if(operacao==2)	
-			funcionario->removerItens();
+			funcionario->removerLivro();
 		
-		if(operacao==3)	
+		if(operacao==3)
+			funcionario->adicionarMultimidia();
+		
+		if(operacao==4)	
+			funcionario->removerMultimidia();
+		
+		if(operacao==5)	
 			funcionario->cadastrarUsuario();
 		
-		if(operacao==4)
+		if(operacao==6)	
+			funcionario->cadastrarFuncionario();
+		
+		if(operacao==7)
 			menu=0;
 	}	
 }
