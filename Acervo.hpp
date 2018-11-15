@@ -20,7 +20,7 @@ class Acervo{
 
 	public:
 
-
+		Acervo(int acervoTotalLivro, int acervoTotalMultimidia, Item *acervolivro,Item *acervoMultimidia);
 		void setAcervoTotal(int acervoLivro,int acervoMultimidia);
 		int getAcervoTotal();
 		void listarLivros();
