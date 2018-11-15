@@ -49,3 +49,17 @@
 			return _quantidadeItens;
 
 	}
+
+
+	void Item::imprimeItem(){
+
+		cout<<"\nTítulo : "<<getTitulo()<<endl;
+		cout<<"Autor : "<<getAutor()<<endl;
+		cout<<"Editora : "<<getEditora()<<endl;
+		cout<<"Codigo : "<<getCodigo()<<endl;
+		//quantidade de itens vem aq ?
+		//cout<<"quantidade disponivel : "<<getQuantidadeItens()<<endl;
+	}
+
+
+	
