@@ -5,13 +5,12 @@
 
 class Livro : public Item{
 	private:
-		int _itensDisponiveis = 0;
-		bool _disponivel;
+		bool _disponibilidade;
 
 	public:
 		void setItensDisponiveis(int);
 		bool isDisponivel();
-
+		void imprimeCampos();
 }
 
 #endif
