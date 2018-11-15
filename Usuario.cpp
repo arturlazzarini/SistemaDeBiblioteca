@@ -5,7 +5,7 @@ Usuario::Usuario (string nome, string senha, int id, item itensAlugados[], item 
 	this->itensReservados = itensReservados;
 }
 
-void Usuario::alugarLivro(string item){
+void Usuario::alugarLivro(Livro item){
 	 
 	//fazer as excecoes pro teste nao pode ser item nulo, nem indisponivel
 	_livrosAlugados.push_back(item);
@@ -30,9 +30,9 @@ void Usuario::devolverLivro(string item){
   }
 }
 
-void Usuario::alugarMultimidia(string item){
+void Usuario::alugarMultimidia(Multimidia item){
 	 
-	_livrosAlugados.push_back(item);
+	_multimidiaAlugados.push_back(item);
 }
 
 void Usuario::devolverMultimidia(string item){
