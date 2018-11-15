@@ -1,129 +1,151 @@
 #include "Acervo.hpp"
 
+Acervo::Acervo(){}
 
+void Acervo::setAcervoTotal(int totalLivro,int totalMultimidia){
+	
+	_acervoTotalLivro = totalLivro;
+	_acervoTotalMultimidia = totalMultimidia;
+}
 
+void Acervo::setAcervoTotalMultimidia(int totalMultimidia){
 	
+	_acervoTotalMultimidia = totalMultimidia;
+}
 
-	Acervo(int acervoTotalLivro, int acervoTotalMultimidia, Item acervolivro[],Item acervoMultimidia[]){
+void Acervo::setAcervoTotalLivro(int totalLivro){
 	
-	
-		this->_acervoTotalLivro = acervoTotalLivro;
-		this->_acervoTotalMultimidia = acervoTotalMultimidia;
-		//como sera a inicializaçao do acervo ?	
-	
-	
+	_acervoTotalLivro = totalLivro;
+}
+
+int Acervo::getAcervoTotal(){
+
+	return _acervoTotalLivro + _acervoTotalMultimidia;
+}
+
+int Acervo::getAcervoTotalLivro(){
+
+	return _acervoTotalLivro ;
+}
+
+int Acervo::getAcervoTotalMultimidia(){
+
+	return  _acervoTotalMultimidia;
+}
+
+void Acervo::listarLivros(){
+
+	for(int i=0;i<_acervoTotalLivro;i++){
+
+			acervoLivro[i].imprimirCampos();
 	}
 
+}
 
-	void Acervo::setAcervoTotal(int acervoLivro,int acervoMultimidia){
+void Acervo::listarMultimidia(){
 
+	for(int i=0;i<_acervoTotalMultimidia;i++){
 
-		this->_acervoTotalLivro = acervoLivro;
-		this->_acervoTotalMultimidia = acevoMultimidia;
-	}
-
-	int Acervo::getAcervoTotal(){
-
-		return _acervoTotalLivro + _acervoTotalMultimidia;
+			acervoMultimidia[i].imprimirCampos();
 
 	}
+}
 
-	void Acervo::adicionaLivro(Item x){
+void Acervo::procuraLivros(Livro livro,int campo){
 	
-		 this->acervoLivro.push_back (x);
-	
-	}
+		if(campo==1){
+			
+			for(i=0;i < _acervoTotalLivro;i++){
+			
+				if(_acervoLivro[i].getTitulo() == livro.getTitulo())
+					_acervoLivro[i].imprimirCampos();
+			}
+		}
+		if(campo==2){
+			
+			for(i=0;i < _acervoTotalLivro;i++){
+			
+				if(acervoLivro[i].getAutor()== livro.getAutor())
+					acervoLivro[i].imprimirCampos();
+			}
+		}
+		if(campo==3){
+			
+			for(i=0;i < _acervoTotalLivro;i++){
+			
+				if(acervoLivro[i].getEditora() == livro.getEditora())
+					acervoLivro[i].imprimirCampos();
+			}
+		}			
+}
 
-	void Acervo::removeLivro(Item x){
+void Acervo::procuraMultimidia(Multimidia multimidia, int campo){
 	
-	int i;	
-	for(i=0;i<this->acervoLivro.size();i++){
-	
-		if(this->acervoLivro[i]._titulo == x._titulo){
-		
-			this->acervoLivro.erase (this->acervoLivro.begin()+ i);
-		
-			}	
-		
+		if(campo==1){
+			
+			for(i=0;i < _acervoTotalMultimidia;i++){
+			
+				if(acervoMultimidia[i].getTitulo() == multimidia.getTitulo())
+					acervoMultimidia[i].imprimirCampos();
+			}
 		}
 		
-	}
+		if(campo==2){
+			
+			for(i=0; i < _acervoTotalMultimidia; i++){
+			
+				if(acervoMultimidia[i].getAutor() == multimidia.getAutor)
+					acervoMultimidia[i].imprimirCampos();
+			}
+			
+}
 
+void Acervo::removeLivro(Livro livro){
 	
-	void Acervo::adicionaMultimidia(Item x){
-	
-		this->acervoMultimidia.push_back(x);
-	}
-
-
-	void Acervo::removeMultimidia(Item x){
-	
-	int i;	
-	for(i=0;i<this->acervoMultimidia.size();i++){
-	
-		if(this->acervoMultimidia[i]._titulo == x._titulo){
+	for(i=0;i < _acervoTotalLivro;i++){
 		
-			this->acervoMultimidia.erase (this->acervoMultimidia.begin()+ i);
-		
-			}	
-		
+		if(acervoLivro[i].nome == livro.nome){
+			
+			acervoLivro.erase(acervoLivro.begin()+i);
+			setAcervoTotalLivro(acervoLivro.size());
+			std::cout<<"Livro removido com sucesso"<<std::endl;
+			break;
 		}
+	}
+}
+
+void Acervo::removeMultimidia(Multimidia multimidia){
+	
+		for(i=0;i < acervoLivro.size();i++){
 		
-	}
-
-	void Acervo::imprimeItens(){
-
-		cout<<"\nTítulo : "<<getTitulo()<<endl;
-		cout<<"Autor : "<<getAutor()<<endl;
-		cout<<"Editora : "<<getEditora()<<endl;
-		cout<<"Codigo : "<<getCodigo()<<endl;
-		//quantidade de itens vem aq ?
-		//cout<<"quantidade disponivel : "<<getQuantidadeItens()<<endl;
-
-
-	}
-
-	void Acervo::listarLivros(){
-
-		int i =0;
-
-		for(i=0;i<acervoLivro.size();i++){
-
-				acervoLivro[i].imprimeItens();
-
+			if(acervoMultimidia[i].nome == multimidia.nome){
+				
+				acervoLivro.erase(acervoLivro.begin()+i);
+				setAcervoTotalMultimidia(acervoLivro.size());
+				std::cout<<"Multimidia removida com sucesso"<<std::endl;
+				break;
 		}
-
-
+			
 	}
+}
+void Acervo::adicionarMultimidia(Multimidia multimidia){
+	
+	acervoMultimidia.push_back(multimidia);
+	std::cout<<"Livro adicionado com sucesso"<<std::endl;
+}
 
-		void Acervo::listarMultimidia(){
+void Acervo::adicionarLivro(Livro livro){
+	
+	acervoLivro.push_back(livro);
+	std::cout<<"Livro adicionado com sucesso"<<std::endl;
+}
 
-		int i =0;
-
-		for(i=0;i<acervoMultimidia.size();i++){
-
-				acervoMultimidia[i].imprimeItens();
-
+void Acervo::reservarLivro(Livro livro){
+	
+	for(i=0;i < _acervoTotalLivro;i++){
+			
+			if(_acervoLivro[i].getTitulo() == livro.getTitulo() && _acervoLivro[i].getAutor() == livro.getAutor())
+				_acervoLivro[i].reservar();
 		}
-
-
-	}
-
-	void Acervo::procuraLivros(Item x){
-
-		cout<<"\nDigite 1 para procurar Livro por Titulo \nDigite 2 para procurar Livro por Autor  \nDigite 3 para procurar Livro por Editora 
-		\nDigite 4 para procurar Livro por codigo\n "
-
-
-	}
-
-	void Acervo::procuraMultimidia(Item x){
-
-		cout<<"\nDigite 1 para procurar Multimidia por Titulo \nDigite 2 para procurar Multimidia por Autor  \nDigite 3 para procurar Multimidia por Editora 
-		\nDigite 4 para procurar Multimidia por codigo\n "
-
-
-	}
-
-
+}
 
