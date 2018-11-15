@@ -28,6 +28,8 @@ void Biblioteca::interfacePrincipal(){
 	acervo= new Acervo();
 
 	determinaInterface();
+	
+	desalocaDados();
 }
 
 //identifica o tipo da pessoa que acessa o sistema para disponibilizar sua respectiva interface
@@ -77,6 +79,9 @@ int Biblioteca::telaInicial(int tipoUsuario){
 	int telaInicio = 1
 	int acessoPermitido = 0;
 	char c = ' ';
+	int idCadastro;
+	string nomeCadastro;
+	string senhaCadastro;
 	
 	while(telaInicio){
 		
@@ -101,9 +106,15 @@ int Biblioteca::telaInicial(int tipoUsuario){
 					
 				cout<<"Voce deseja realizar um cadastro na biblioteca?(s/n)"<<endl;
 				cin>>char cadastrar;
-//------------------------------------------------------------------------------------------------------					
-				if(cadastrar == 's')
-					usuario->cadastrarUsuario(usuario);
+				
+				if(cadastrar == 's'){
+					
+					cout<<"Digite seu Nome, seu id e sua senha"<<endl;
+					cin>>nomeCadastro >>idCadastro >> senhaCadastro;
+					
+					funcionario->cadastrarUsuario(administrador,idCadastro,nomeCadastro,senhaCadastro)
+				}
+					
 					
 				if(cadastrar == 'n')
 					telaInicio=0;	
@@ -116,19 +127,19 @@ int Biblioteca::telaInicial(int tipoUsuario){
 //login retorna 1 caso o acesso seja valido
 int Biblioteca::login(Pessoa *p,int tipoUsuario){
 	
-	string nomeUsuario;
+	int idUsuario;
 	string senhaUsuario
 	
 	cout<<"Digite O seu ID e sua senha"<<endl;
 	
 	cin>>nomeUsuario>>senhaUsuario;
 	
-	p->setNome(nomeUsuario);
+	p->setId(idUsuario);
 	p->setSenha(senhaUsuario);
 	
 	if(tipoUsuario == pessoaUsuario){
 		
-		if(pesquisaUsuario())
+		if(pesquisaUsuario(p))
 			return 1;
 		
 		else
@@ -137,7 +148,7 @@ int Biblioteca::login(Pessoa *p,int tipoUsuario){
 		
 	if(tipoUsuario == pessoaFuncionario){
 		
-		if(pesquisaFuncionario())
+		if(pesquisaFuncionario(p))
 			return 1;
 		
 		else
