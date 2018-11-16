@@ -5,8 +5,13 @@
 #include "Multimidia.hpp"
 #include <vector>
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <iomanip>
 
-using namespace std;
+using std::vector;
+using std::string;
+using std::cout;
 
 class Acervo{
 	
