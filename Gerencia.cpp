@@ -14,24 +14,22 @@ void Gerencia::setFuncionarioCadastrado(Funcionario novo){
 	cout<<"Funcionario cadastrado com sucesso"<<endl;
 }
 
-int Gerencia::pesquisaFuncionario(Pessoa *funcionario){
+int Gerencia::pesquisaFuncionario(int idCadastro, string senhaCadastro){
 	
 	for(int i=0; i < _funcionariosCadastrados.size(); i++){
 		
-		if(_funcionariosCadastrados[i].getId() == funcionario->getId() && _funcionariosCadastrados[i].getSenha() == funcionario->getSenha()){
-			funcionario->setNome(_funcionariosCadastrados[i].getNome());
+		if(_funcionariosCadastrados[i].getId() == idCadastro && _funcionariosCadastrados[i].getSenha() == senhaCadastro){
 			return 1;	
 		}
 	}
 	return 0;
 }
 
-int Gerencia::pesquisaUsuario(Pessoa *usuario){
+int Gerencia::pesquisaUsuario(int idCadastro, string senhaCadastro){
 	
 	for(int i=0; i < _usuariosCadastrados.size(); i++){
 		
-		if(_usuariosCadastrados[i].getId() == usuario->getId() && _usuariosCadastrados[i].getSenha() == usuario->getSenha()){
-			usuario->setNome(_usuariosCadastrados[i].getNome());
+		if(_usuariosCadastrados[i].getId() == idCadastro && _usuariosCadastrados[i].getSenha() == senhaCadastro){
 			return 1;
 		}			
 	}
