@@ -31,10 +31,10 @@ class Acervo{
 		int getAcervoTotalMuktimidia();
 		void listarLivros();
 		void listarMultimidia();
-		void procurarLivro(Livro);
-		void procurarMultimidia(Multimidia);
-		void reservarLivro(Livro);
-		void reservarMultimidia(Multimidia);
+		void procurarLivro(string,int);
+		void procurarMultimidia(string,int);
+		void mudarDisponibilidadeLivro(Livro);
+		void mudarDisponibilidadeMultimidia(Multimidia);
 }
 
 #endif
