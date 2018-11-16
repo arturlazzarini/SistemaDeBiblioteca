@@ -19,6 +19,7 @@ class Acervo{
 	public:
 
 		Acervo();
+		void inicializarAcervo();
 		void adicionarMultimidia(Multimidia);
 		void adicionarLivro(Livro);
 		void removerLivro(Livro);
