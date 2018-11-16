@@ -54,13 +54,11 @@ void Biblioteca::interfaceUsuario(int interfaceTipo){
 	
 	int execucao =1;
 	int acesso=0;
+	char decisao=' ';
 	
 	while(execucao){
 		
 		acesso=telaInicial(interfaceTipo);
-		
-		if(acesso == 0)
-			cout<<"Acesso Negado: Falha em realizar o login"<<endl;
 
 		while(acesso){
 			
@@ -69,6 +67,19 @@ void Biblioteca::interfaceUsuario(int interfaceTipo){
 			
 			if(interface == pessoaUsuario)
 				menuFuncionario(acesso);
+			
+			while(decisao!= 's'&& decisao!= 'n'){
+				
+				cout<<"Deseja continuar sair do sistema?(s/n)"<<endl;
+				
+				cin>>decisao;
+			}
+			
+			if(decisao == 's')
+				execucao=0;
+			
+			if(decisao == 'n')
+				acesso=0;
 		}
 	}
 }
@@ -76,9 +87,13 @@ void Biblioteca::interfaceUsuario(int interfaceTipo){
 //Tela de inicio comum à interface do usuario e à interface do funcionario
 int Biblioteca::telaInicial(int tipoUsuario){
 	
+	int telaCadastro=1;
+	int telaCadastro2=1;
 	int telaInicio = 1
 	int acessoPermitido = 0;
-	char c = ' ';
+	char cadastroExistente = ' ';
+	char cadastrar = ' ';
+	char novaTentativa = ' ';
 	int idCadastro;
 	string nomeCadastro;
 	string senhaCadastro;
@@ -86,42 +101,74 @@ int Biblioteca::telaInicial(int tipoUsuario){
 	while(telaInicio){
 		
 		try{
-			while(c != 'n' && c != 's'){	
+			while(cadastroExistente != 'n' && cadastroExistente != 's'){	
 			
 				cout<<"Voce possui cadastro na biblioteca?(s/n)"<<endl;
-				cin>> c;
+				cin>> cadastroExistente;
 					
-				if(c == 's'){
+				if(cadastroExistente == 's'){
 					
 					acessoPermitido=login(tipoUsuario);
 					return acessoPermitido;
 				}
 						
-				if(c == 'n')
+				if(cadastroExistente == 'n')
 					throw LoginInvalido();
 			}
 		}
 			
 			catch(LoginInvalido& invalido){
-					
-				cout<<"Voce deseja realizar um cadastro na biblioteca?(s/n)"<<endl;
-				cin>>char cadastrar;
 				
-				if(cadastrar == 's'){
+				if(tipoUsuario==pessoaUsuario){
 					
-					cout<<"Digite seu Nome, seu id e sua senha"<<endl;
-					cin>>idCadastro >>nomeCadastro >> senhaCadastro;
+					while(telaCadastro){
+						
+						while(cadastrar != 'n' && cadastrar != 's'){	
+						
+							cout<<"Voce deseja realizar um cadastro na biblioteca?(s/n)"<<endl;
+							
+							cin>> cadastrar;
+						}
+						
+						if(cadastrar == 's'){
+							
+							while(telaCadastro2){
+								
+								cout<<"Digite seu Nome, seu id e sua senha"<<endl;
+								cin>>idCadastro >>nomeCadastro >> senhaCadastro;
+								
+								if(administrador->pesquisausuario(idCadastro,senhaCadastro)){
+									
+									cout<<"Erro: O usuario com esse id ja esta cadastrado"<<endl;
+															
+									cout<<"Tentar novamente?(s/n)"<<endl;
+									
+									cin>>novaTentativa;
+									
+									if(novaTentativa == 'n')
+										return 0;
+								}
 					
-					funcionario->cadastrarUsuario(administrador,idCadastro,nomeCadastro,senhaCadastro)
+								else
+									funcionario->cadastrarUsuario(administrador,idCadastro,nomeCadastro,senhaCadastro);
+									return 0;
+							}
+						}	
+							
+						if(cadastrar == 'n')
+							return 0;	
+					}
 				}
+				
+				if(tipoUsuario == pessoaFuncionario){
 					
-					
-				if(cadastrar == 'n')
-					telaInicio=0;	
+					cout<<"Falha de Acesso: Esse funcionario nao possui cadastro"<<endl;
+					return 0;
+				}
 			}
 	}
 	
-	return 0;	
+		
 }	
 
 //login retorna 1 caso o acesso seja valido
@@ -136,25 +183,29 @@ int Biblioteca::login(int tipoUsuario){
 	
 	if(tipoUsuario == pessoaUsuario){
 		
-		usuario->setId(idUsuario);
-		usuario->setSenha(senhaUsuario);
-		
-		if(administrador->pesquisaUsuario(usuario))
+		if(administrador->pesquisaUsuario(idUsuario,senhaUsuario)){
+			
+			usuario->setId(idUsuario);
+			usuario->setSenha(senhaUsuario);
 			return 1;
+		}
 	
 		else
+			cout<<"Acesso negado: Confira seu id e senha ou realize um cadastro"<<endl;
 			throw LoginInvalido();
 	}
 		
 	if(tipoUsuario == pessoaFuncionario){
-		
-		funcionario->setId(idUsuario);
-		funcionario->setSenha(senhaUsuario);
-		
-		if(administrador->pesquisaFuncionario(funcionario))
-			return 1 ;
+
+		if(administrador->pesquisaFuncionario(idUsuario,senhaUsuario)){
+			
+			funcionario->setId(idUsuario);
+			funcionario->setSenha(senhaUsuario);			
+			return 1;
+		}
 		
 		else
+			cout<<"Acesso negado: Confira seu id e senha ou realize um cadastro"<<endl;
 			throw LoginInvalido();
 	}	
 }
@@ -186,7 +237,7 @@ void Biblioteca::menuUsuario(){
 			cout<<"Imprimir livros reservados(8)"<<endl;
 			cout<<"Pesquisar por livro(9)"<<endl;
 			cout<<"Pesquisar por multimidia(10)"<<endl;
-			cout<<"Sair do sistema(11)"<<endl;
+			cout<<"Fazer logoff(11)"<<endl;
 			
 			cin>>operacao;
 		}
@@ -386,7 +437,7 @@ void Biblioteca::menuFuncionario(){
 			cout<<"Cadastrar novo funcionario da biblioteca(6)"<<endl;
 			cout<<"Imprimir colecao de livros(7)"<<endl;
 			cout<<"Imprimir colecao de multimidia(8)"<<endl;
-			cout<<"Sair do sistema(9)"<<endl;
+			cout<<"Fazer logoff(9)"<<endl;
 			
 			cin>>operacao;
 		}
@@ -434,8 +485,12 @@ void Biblioteca::menuFuncionario(){
 			cin>>nomeUsuario;
 			cout<<"Digite o login(numero inteiro) e uma nova senha para o usuario"<<endl;
 			cin>>userUsuario>>senhaUsuario;
-
-			funcionario->cadastrarUsuario(administrador, nomeUsuario, senhaUsuario, userUsuario);
+			
+			if(administrador->pesquisausuario(userUsuario,senhaUsuario)){
+				cout<<"Erro: esse usuario ja esta cadastrado"<<endl;
+			}
+			else
+				funcionario->cadastrarUsuario(administrador, nomeUsuario, senhaUsuario, userUsuario);
 		}
 		
 		if(operacao==6){
@@ -443,8 +498,12 @@ void Biblioteca::menuFuncionario(){
 			cin>>nomeFuncionario;
 			cout<<"Digite o login(numero inteiro) e uma nova senha para o funcionario"<<endl;
 			cin>>userFuncionario>>senhaFuncionario;
-
-			funcionario->cadastrarFuncionario(administrador, nomeFuncionario, senhaFuncionario, userFuncionario);	
+			
+			if(administrador->pesquisaFuncionario(userFuncionario,senhaFuncionario)){
+				cout<<"Erro: esse funcionario ja esta cadastrado"<<endl;
+			}
+			else
+				funcionario->cadastrarFuncionario(administrador, nomeFuncionario, senhaFuncionario, userFuncionario);	
 		}
 		
 		if(operacao == 7)	
