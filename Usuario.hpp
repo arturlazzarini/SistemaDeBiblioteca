@@ -14,6 +14,7 @@ class Usuario : public Pessoa{
 		vector<Multimidia> _multimidiaReservados;
 
 	public:
+		Usuario();
 		Usuario(string,string,id);
 		void alugarLivro(string);
 		void devolverLivro(string);
