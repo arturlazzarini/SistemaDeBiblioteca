@@ -1,13 +1,12 @@
 #include "Usuario.hpp"
 
-Usuario::Usuario (string nome, string senha, int id, item itensAlugados[], item itensReservados[]) : Pessoa(nome,senha,id){
-	this->itensAlugados = itensAlugados;
-	this->itensReservados = itensReservados;
-}
+Usuario::Usuario(){}
+
+Usuario::Usuario(string nome, string senha, int id) : Pessoa(nome,senha,id){}
 
 void Usuario::alugarLivro(Livro item){
 	 
-	//fazer as excecoes pro teste nao pode ser item nulo, nem indisponivel
+	//fazer as excecoes pro teste: nao pode ser item nulo, nem indisponivel
 	_livrosAlugados.push_back(item);
 }
 
@@ -57,6 +56,11 @@ void Usuario::devolverMultimidia(string item){
 
 void Usuario::imprimeLivrosAlugados(){
 
+  if(_livrosAlugados.empty()){
+    cout<<"Voce nao possui nenhum livro alugado"<<endl; 
+    return;   
+  }
+
   for(int i=0; i<_livrosAlugados.size(); i++){
     cout<<"Título : "<<_livrosAlugados[i].getTitulo()<<endl;
     cout<<"Autor : "<<_livrosAlugados[i].getAutor()<<endl;
@@ -65,6 +69,11 @@ void Usuario::imprimeLivrosAlugados(){
 }
 
 void Usuario::imprimeMultimidiaAlugados(){
+
+  if(_livrosAlugados.empty()){
+    cout<<"Voce nao possui nenhuma multimidia alugada"<<endl; 
+    return;   
+  }
 
   for(int i=0; i<_multimidiaAlugados.size(); i++){
     cout<<"Título : "<<_multimidiaAlugados[i].getTitulo()<<endl;
@@ -75,6 +84,11 @@ void Usuario::imprimeMultimidiaAlugados(){
 
 void Usuario::imprimeLivrosReservados(){
 
+  if(_livrosAlugados.empty()){
+    cout<<"Voce nao possui nenhum livro reservado"<<endl; 
+    return;   
+  }
+
   for(int i=0; i<_livrosReservados.size(); i++){
     cout<<"Título : "<<_livrosReservados[i].getTitulo()<<endl;
     cout<<"Autor : "<<_livrosReservados[i].getAutor()<<endl;
@@ -83,6 +97,11 @@ void Usuario::imprimeLivrosReservados(){
 }
 
 void Usuario::imprimeMultimidiaReservados(){
+
+  if(_livrosAlugados.empty()){
+    cout<<"Voce nao possui nenhuma multimidia reservada"<<endl; 
+    return;   
+  }
 
   for(int i=0; i<_multimidiaReservados.size(); i++){
     cout<<"Título : "<<_multimidiaReservados[i].getTitulo()<<endl;
