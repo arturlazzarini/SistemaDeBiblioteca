@@ -181,7 +181,7 @@ void Acervo::inicializarAcervo(){
 	
 	string titulo;
 	string autor;
-	string editora;
+	string prod;
 
 	string line;
 
@@ -198,15 +198,13 @@ void Acervo::inicializarAcervo(){
 		stringstream ss(line);
 		getline(ss, titulo, '/');
 		getline(ss, autor, '/');
-		getline(ss, editora, '/');
+		getline(ss, prod, '/');
 
-		Livro novo(titulo, autor, editora);    
+		Livro novo(titulo, autor, prod,true);    
                                                                            
-		 _acervoTotalLivro.push_back(novo);         
+		 adicionarLivro(novo);         
 
 	}
-	
-	_acervoTotalLivro = _acervoLivro.size();
 
 	inFile.close();
 }
