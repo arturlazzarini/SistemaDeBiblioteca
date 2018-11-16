@@ -5,12 +5,17 @@
 
 class Multimidia : public Item{
 	private:
-		bool _disponibilidade;
+
+		bool _disponibilidade = true;
 		
 	public:
+		
+		Multimidia();
+		Multimidia(string,string,string,bool);
 		void setItensDisponiveis(int);
 		bool isDisponivel();
 		void imprimeCampos();
+		void reservar();
 }
 
 #endif
