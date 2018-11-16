@@ -33,7 +33,7 @@ public:
 	int telaInicial(int tipoUsuario);
 	void menuUsuario(int &acesso);
 	void menuFuncionario(int &acesso);
-	int login(Pessoa *p,int tipoUsuario);
+	int login(int tipoUsuario);
 	void interfaceFuncionario();
 	void desalocaDados();
 
@@ -47,3 +47,4 @@ class LoginInvalido: public std::exception{
 };
 
 #endif
+
