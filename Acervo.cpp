@@ -51,13 +51,13 @@ void Acervo::listarMultimidia(){
 	}
 }
 
-void Acervo::procuraLivros(Livro livro,int campo){
+void Acervo::procuraLivros(string livro,int campo){
 	
 		if(campo==1){
 			
 			for(i=0;i < _acervoTotalLivro;i++){
 			
-				if(_acervoLivro[i].getTitulo() == livro.getTitulo())
+				if(_acervoLivro[i].getTitulo() == livro)
 					_acervoLivro[i].imprimirCampos();
 			}
 		}
@@ -65,7 +65,7 @@ void Acervo::procuraLivros(Livro livro,int campo){
 			
 			for(i=0;i < _acervoTotalLivro;i++){
 			
-				if(acervoLivro[i].getAutor()== livro.getAutor())
+				if(acervoLivro[i].getAutor()== livro)
 					acervoLivro[i].imprimirCampos();
 			}
 		}
@@ -73,19 +73,19 @@ void Acervo::procuraLivros(Livro livro,int campo){
 			
 			for(i=0;i < _acervoTotalLivro;i++){
 			
-				if(acervoLivro[i].getEditora() == livro.getEditora())
+				if(acervoLivro[i].getEditora() == livro)
 					acervoLivro[i].imprimirCampos();
 			}
 		}			
 }
 
-void Acervo::procuraMultimidia(Multimidia multimidia, int campo){
+void Acervo::procuraMultimidia(string multimidia, int campo){
 	
 		if(campo==1){
 			
 			for(i=0;i < _acervoTotalMultimidia;i++){
 			
-				if(acervoMultimidia[i].getTitulo() == multimidia.getTitulo())
+				if(acervoMultimidia[i].getTitulo() == multimidia)
 					acervoMultimidia[i].imprimirCampos();
 			}
 		}
@@ -94,7 +94,7 @@ void Acervo::procuraMultimidia(Multimidia multimidia, int campo){
 			
 			for(i=0; i < _acervoTotalMultimidia; i++){
 			
-				if(acervoMultimidia[i].getAutor() == multimidia.getAutor)
+				if(acervoMultimidia[i].getAutor() == multimidia)
 					acervoMultimidia[i].imprimirCampos();
 			}
 			
@@ -140,20 +140,39 @@ void Acervo::adicionarLivro(Livro livro){
 	std::cout<<"Livro adicionado com sucesso"<<std::endl;
 }
 
-void Acervo::reservarLivro(Livro livro){
+void Acervo::mudarDisponibilidadeLivro(Livro livro){
+
+	int naoexiste=0;
 	
 	for(i=0;i < _acervoTotalLivro;i++){
 			
-			if(_acervoLivro[i].getTitulo() == livro.getTitulo() && _acervoLivro[i].getAutor() == livro.getAutor())
-				_acervoLivro[i].reservar();
+			if(_acervoLivro[i].getTitulo() == livro.getTitulo() && _acervoLivro[i].getAutor() == livro.getAutor()){
+				_acervoLivro[i].mudarDisponibilidade();
+				break;
+			}
+			naoExiste++;
 		}
-}
 
-void Acervo::reservarMultimidia(Multimidia multimidia){
+		if(naoExiste == _acervoMultimidia){
+			cout<<"Este livro nao esta disponivel"<<endl;
+		}
+		
+}
+void Acervo::mudarDisponibilidadeMultimidia(Multimidia multimidia){
+	
+	int naoexiste=0;
 	
 	for(i=0;i < _acervoTotalMultimidia;i++){
 			
-			if(_acervoMultimidia[i].getTitulo() == multimidia.getTitulo() && _acervoMultimidia[i].getAutor() == multimidia.getAutor())
-				_acervoMultimidia[i].reservar();
+			if(_acervoMultimidia[i].getTitulo() == multimidia.getTitulo() && _acervoMultimidia[i].getAutor() == multimidia.getAutor()){
+				
+				_acervoMultimidia[i].mudarDisponibilidade();
+				break;
+			}
+			naoExiste++;
+		}
+		
+		if(naoExiste == _acervoMultimidia){
+			cout<<"Esta multimidia nao esta disponivel"<<endl;
 		}
 }
