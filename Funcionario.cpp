@@ -36,14 +36,14 @@ void Funcionario::removerMultimidias(Acervo *acervo,string titulo, string autor)
 }
 
 //Cadastra novos usuários e os adiciona à gerencia
-void Funcionario::cadastrarUsuario(Gerencia *adm, string nome, string senha, string id){
+void Funcionario::cadastrarUsuario(Gerencia *adm, string nome, string senha, int id){
 	
 	Usuario novo(nome, senha, id);
 	adm->setUsuarioCadastrado(novo);
 }
 
 //Cadastra novos usuários e os adiciona à gerencia
-void Funcionario::cadastrarFuncionario(Gerencia *adm, string nome, string senha, string id){
+void Funcionario::cadastrarFuncionario(Gerencia *adm, string nome, string senha, int id){
 	
 	Funcionario novo(nome, senha, id);
 	adm->setFuncionarioCadastrado(novo);
