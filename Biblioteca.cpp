@@ -364,7 +364,8 @@ void Biblioteca::menuFuncionario(){
 	int menu=1;
 	int operacao=0;
 	string nomeLivro,autorLivro,editoraLivro,nomeMultimidia,autorMultimidia;
-	string nomeUsuario,userUsuario,senhaUsuario,nomeFuncionario,userFuncionario,senhaFuncionario;
+	string nomeUsuario,senhaUsuario,nomeFuncionario,senhaFuncionario;
+	int userFuncionario,userUsuario;
 	
 	while(menu){
 
@@ -391,8 +392,8 @@ void Biblioteca::menuFuncionario(){
 			
 			cin>>nomeLivro>>autorLivro>>editoraLivro;
 			
-			funcionario->adicionarLivro(acervo,nomeLivro,autorLivro,editoraLivro);
-			}
+			funcionario->adicionarLivros(acervo,nomeLivro,autorLivro,editoraLivro);
+		}
 			
 		
 		if(operacao == 2){
@@ -401,8 +402,8 @@ void Biblioteca::menuFuncionario(){
 			
 			cin>>nomeLivro>>autorLivro>>editoraLivro;
 			
-			funcionario->removerLivro(acervo,nomeLivro,autorLivro,editoraLivro);
-			}	
+			funcionario->removerLivros(acervo,nomeLivro,autorLivro,editoraLivro);
+		}	
 		
 		
 		if(operacao == 3){
@@ -411,8 +412,8 @@ void Biblioteca::menuFuncionario(){
 			
 			cin>>nomeMultimidia>>autorMultimidia;
 			
-			funcionario->adicionarMultimidia(acervo,nomeMultimidia,autorMultimidia);
-			}	
+			funcionario->adicionarMultimidias(acervo,nomeMultimidia,autorMultimidia);
+		}	
 
 		if(operacao == 4){
 			
@@ -420,26 +421,27 @@ void Biblioteca::menuFuncionario(){
 			
 			cin>>nomeMultimidia>>autorMultimidia;
 			
-			funcionario->removerMultimidia(acervo,nomeMultimidia,autorMultimidia);
-			}		
-			
+			funcionario->removerMultimidias(acervo,nomeMultimidia,autorMultimidia);
+		}			
 		
-		if(operacao==5)
+		if(operacao==5){
 			cout<<"Digite o nome completo"<<endl;
 			cin>>nomeUsuario;
-			cout<<"Digite o login e uma nova senha para o usuario"<<endl;
+			cout<<"Digite o login(numero inteiro) e uma nova senha para o usuario"<<endl;
 			cin>>userUsuario>>senhaUsuario;
 
 			funcionario->cadastrarUsuario(administrador, nomeUsuario, senhaUsuario, userUsuario);
+		}
 		
-		if(operacao==6)
+		if(operacao==6){
 			cout<<"Digite o nome completo"<<endl;
 			cin>>nomeFuncionario;
-			cout<<"Digite o login e uma nova senha para o funcionario"<<endl;
+			cout<<"Digite o login(numero inteiro) e uma nova senha para o funcionario"<<endl;
 			cin>>userFuncionario>>senhaFuncionario;
 
 			funcionario->cadastrarFuncionario(administrador, nomeFuncionario, senhaFuncionario, userFuncionario);	
-			
+		}
+		
 		if(operacao == 7)	
 			acervo->listarLivros();
 			
