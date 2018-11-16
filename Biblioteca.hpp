@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <exception>
-#include "Pessoa.hpp"
+#include <string>
 #include "Funcionario.hpp"
 #include "Gerencia.hpp"
 #include "Usuario.hpp"
