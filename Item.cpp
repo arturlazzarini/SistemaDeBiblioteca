@@ -1,5 +1,14 @@
 #include "Item.hpp"
 
+Item::Item(){}
+
+Item::Item(string titulo, string autor, string editora, bool disponibilidade){
+	this->_titulo = titulo;
+	this->_autor = autor;
+	this->_editora = editora;
+	this->_disponibilidade = disponibilidade;
+}
+
 void Item::setTitulo(string titulo){
 		this->_titulo = titulo;
 }
