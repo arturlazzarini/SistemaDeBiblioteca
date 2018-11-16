@@ -10,6 +10,12 @@ void Usuario::alugarLivro(Livro item){
 	_livrosAlugados.push_back(item);
 }
 
+void Usuario::reservarLivro(Livro item){
+   
+  //fazer as excecoes pro teste: nao pode ser item nulo, nem indisponivel
+  _livrosReservados.push_back(item);
+}
+
 void Usuario::devolverLivro(string item){
 
 	std::sort(_livrosAlugados.begin(), _livrosAlugados.end()); 
@@ -32,6 +38,11 @@ void Usuario::devolverLivro(string item){
 void Usuario::alugarMultimidia(Multimidia item){
 	 
 	_multimidiaAlugados.push_back(item);
+}
+
+void Usuario::reservarMultimidia(Multimidia item){
+  
+  _multimidiaReservados.push_back(item);
 }
 
 void Usuario::devolverMultimidia(string item){
