@@ -2,10 +2,15 @@
 
 Multimidia::Multimidia(){}
 
-Multimidia::Multimidia(string titulo, string autor, string editora, bool disponibilidade) : Item(titulo,autor,editora,disponibilidade){}
+Multimidia::Multimidia(string titulo, string autor, string editora,string tipo, bool disponibilidade) : Item(titulo,autor,editora,disponibilidade){
+	setTipo(tipo);
+}
 
-void Multimidia::setItensDisponiveis(int quantidade){
-    _itensDisponiveis = quantidade;
+void Multimidia::setTipo(string tipo){
+	this->tipoMultimidia=tipo;
+}
+string Multimidia::getTipo(){
+	return this->tipoMultimidia;
 }
 
 bool Multimidia::isDisponivel(){
@@ -20,9 +25,7 @@ void Multimidia::imprimeCampos(){
 
 	cout<<"Título : "<<getTitulo()<<endl;
 	cout<<"Autor : "<<getAutor()<<endl;
-	cout<<"Editora : "<<getEditora()<<endl;
-}
-
-void Multimidia::reservar(){
-	_disponibilidade = false;
+	cout<<"Produtora : "<<getEditora()<<endl;
+	cout<<"Tipo : "<<getTipo()<<endl;
+	
 }
