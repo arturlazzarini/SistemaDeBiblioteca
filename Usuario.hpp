@@ -8,17 +8,21 @@
 class Usuario : public Pessoa{
 
 	private:
+
 		vector<Livros> _livrosAlugados;
 		vector<Multimidia> _multimidiaAlugados;
 		vector<Livros> _livrosReservados;
 		vector<Multimidia> _multimidiaReservados;
 
 	public:
+
 		Usuario();
 		Usuario(string,string,id);
-		void alugarLivro(string);
+		void alugarLivro(Livro);
+		void reservarLivro(Livro);
 		void devolverLivro(string);
-		void alugarMultimidia(string);
+		void alugarMultimidia(Multimidia);
+		void reservarMultimidia(Multimidia);
 		void devolverMultimidia(string);
 		void imprimeLivrosAlugados();
 		void imprimeLivrosReservados();
