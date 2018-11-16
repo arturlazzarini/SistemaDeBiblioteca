@@ -9,11 +9,12 @@ class Multimidia : public Item{
 		bool _disponibilidade = true;
 		
 	public:
-		
+
 		Multimidia();
 		Multimidia(string,string,string,bool);
 		void setItensDisponiveis(int);
 		bool isDisponivel();
+		void mudarDisponibilidade();
 		void imprimeCampos();
 		void reservar();
 }
