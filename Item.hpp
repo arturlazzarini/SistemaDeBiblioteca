@@ -19,8 +19,9 @@ class Item{
 		bool _disponibilidade;
 		
 	public:
-	
-		Item(string,string,string,int,int);
+		
+		Item();
+		Item(string,string,string,bool);
 		void setTitulo(string);
 		void setAutor(string autor);	
 		void setEditora(string);				
@@ -29,7 +30,6 @@ class Item{
 		string getEditora();			
 		virtual void imprimeCampos();
 		virtual bool isDisponivel();
-
 
 };
 
