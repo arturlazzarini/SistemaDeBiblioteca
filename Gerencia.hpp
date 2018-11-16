@@ -21,8 +21,8 @@ class Gerencia{
 		Gerencia();
 		void setUsuarioCadastrado(Usuario);
 		void setFuncionarioCadastrado(Funcionario);
-		int pesquisaFuncionario(Pessoa*);
-		int pesquisaUsuario(Pessoa*);
+		int pesquisaFuncionario(int,string);
+		int pesquisaUsuario(int,string);
 
 };
 
