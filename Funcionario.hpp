@@ -10,10 +10,12 @@ class Funcionario : public Pessoa{
     public:
 		Funcionario();
 		Funcionario(string,string,id);
-		void adicionarItem(Acervo *acervo,string titulo, string autor, string prod);
-		void removerItem(Acervo *acervo,string item);
-		void cadastrarUsuario(Gerencia *adm, string nome, string senha, string id);
-		void cadastrarFuncionario(Gerencia *adm, string nome, string senha, string id);
+		void adicionarLivros(Acervo*,string,string,string);
+		void removerLivros(Acervo*,string);
+		void adicionarMultimidias(Acervo*,string,string,string);
+		void removerMultimidias(Acervo*,string);
+		void cadastrarUsuario(Gerencia*, string, string, int id);
+		void cadastrarFuncionario(Gerencia*, string, string, int id);
 };
 
 #endif
