@@ -22,7 +22,7 @@ Biblioteca::~Biblioteca(){
 
 void Biblioteca::interfacePrincipal(){
 	
-    	usuario = new Usuario(); 
+    usuario = new Usuario(); 
 	funcionario = new Funcionario();
 	administrador= new Gerencia();
 	acervo= new Acervo();
@@ -219,6 +219,7 @@ void Biblioteca::menuUsuario(){
 	string editoraLivro;
 	string nomeMultimidia;
 	string autorMultimidia;
+	string tipoMultimidia;
 	int menu=1;
 	int operacao=0;
 	int tipoPesquisa=0;
@@ -291,13 +292,14 @@ void Biblioteca::menuUsuario(){
 		
 		if(operacao==4){	
 		
-			cout<<"Digite o titulo e o autor da multimidia que voce quer reservar"<endl;
-			cin>>nomeMultimidia>>autorMultimidia;
+			cout<<"Digite o titulo, o autor e o tipo da multimidia que voce quer reservar"<endl;
+			cin>>nomeMultimidia>>autorMultimidia>>tipoMultimidia;
 			
 			Multimidia multimidiaReservado;
 			
 			multimidiaReservado.setTitulo(nomeMultimidia);
 			multimidiaReservado.setAutor(autorMultimidia);
+			multimidiaReservado.setTipo(tipoMultimidia);
 				
 			acervo->mudarDisponibilidadeMultimidia(multimidiaReservado);
 			usuario->reservarMultimidia(multimidiaReservado);
@@ -305,14 +307,15 @@ void Biblioteca::menuUsuario(){
 		
 		if(operacao==5){	
 		
-			cout<<"Digite o titulo e o autor da multimidia que voce quer alugar"<endl;
+			cout<<"Digite o titulo, o autor e o tipo da multimidia que voce quer alugar"<endl;
 			
-			cin>>nomeMultimidia>>autorMultimidia;
+			cin>>nomeMultimidia>>autorMultimidia>>tipoMultimidia;
 			
 			Multimidia multimidiaAlugado;
 			
 			multimidiaAlugado.setTitulo(nomeMultimidia);
 			multimidiaAlugado.setAutor(autorMultimidia);
+			multimidiaAlugado.setTipo(tipoMultimidia);
 				
 			usuario->alugarMultimidia(multimidiaAlugado);
 			acervo->mudarDisponibilidadeMultimidia(MultimidiaAlugado);
@@ -320,7 +323,7 @@ void Biblioteca::menuUsuario(){
 		
 		if(operacao==6){
 			
-			cout<<"Digite o titulo da multimidia que voce quer devolver"<endl;
+			cout<<"Digite o titulo e o autor da multimidia que voce quer devolver"<endl;
 			
 			cin>>nomeMultimidia>>autorMultimidia;			
 			
@@ -421,7 +424,7 @@ void Biblioteca::menuFuncionario(){
 	
 	int menu=1;
 	int operacao=0;
-	string nomeLivro,autorLivro,editoraLivro,nomeMultimidia,autorMultimidia;
+	string nomeLivro,autorLivro,editoraLivro,nomeMultimidia,autorMultimidia,produtoraMultimidia,tipoMultimidia;
 	string nomeUsuario,senhaUsuario,nomeFuncionario,senhaFuncionario;
 	int userFuncionario,userUsuario;
 	
@@ -466,20 +469,20 @@ void Biblioteca::menuFuncionario(){
 		
 		if(operacao == 3){
 			
-			cout<<"Digite o titulo e o autor da multimidia que voce quer adicionar"<endl;
+			cout<<"Digite o titulo, o autor,a produtora e o tipo da multimidia que voce quer adicionar"<endl;
 			
-			cin>>nomeMultimidia>>autorMultimidia;
+			cin>>nomeMultimidia>>autorMultimidia>>produtoraMultimidia>>tipoMultimidia;
 			
-			funcionario->adicionarMultimidias(acervo,nomeMultimidia,autorMultimidia);
+			funcionario->adicionarMultimidias(acervo,nomeMultimidia,autorMultimidia,produtoraMultimidia,tipoMultimidia);
 		}	
 
 		if(operacao == 4){
 			
-			cout<<"Digite o titulo e o autor da multimidia que voce quer remover"<endl;
+			cout<<"Digite o titulo, o autor,a produtora e o tipo da multimidia que voce quer remover"<endl;
 			
-			cin>>nomeMultimidia>>autorMultimidia;
+			cin>>nomeMultimidia>>autorMultimidia>>produtoraMultimidia>>tipoMultimidia;
 			
-			funcionario->removerMultimidias(acervo,nomeMultimidia,autorMultimidia);
+			funcionario->removerMultimidias(acervo,nomeMultimidia,autorMultimidia,produtoraMultimidia,tipoMultimidia);
 		}			
 		
 		if(operacao==5){
