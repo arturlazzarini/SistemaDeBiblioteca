@@ -176,3 +176,37 @@ void Acervo::mudarDisponibilidadeMultimidia(Multimidia multimidia){
 			cout<<"Esta multimidia nao esta disponivel"<<endl;
 		}
 }
+	
+void Acervo::inicializarAcervo(){
+	
+	string titulo;
+	string autor;
+	string editora;
+
+	string line;
+
+	ifstream inFile; // inFile é o arquivo de leitura dos dados
+
+	inFile.open("livros.txt", ios::in); // abre o arquivo para leitura
+
+	if (! inFile){
+		cout << "Arquivo txt nao pode ser aberto" << endl;
+		abort();
+	} 
+
+	while(getline(inFile, line)){
+		stringstream ss(line);
+		getline(ss, titulo, '/');
+		getline(ss, autor, '/');
+		getline(ss, editora, '/');
+
+		Livro novo(titulo, autor, editora);    
+                                                                           
+		 _acervoTotalLivro.push_back(novo);         
+
+	}
+	
+	_acervoTotalLivro = _acervoLivro.size();
+
+	inFile.close();
+}
