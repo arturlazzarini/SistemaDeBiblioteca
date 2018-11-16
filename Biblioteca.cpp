@@ -93,7 +93,7 @@ int Biblioteca::telaInicial(int tipoUsuario){
 					
 				if(c == 's'){
 					
-					acessoPermitido=login(usuario,tipoUsuario);
+					acessoPermitido=login(tipoUsuario);
 					return acessoPermitido;
 				}
 						
@@ -125,29 +125,34 @@ int Biblioteca::telaInicial(int tipoUsuario){
 }	
 
 //login retorna 1 caso o acesso seja valido
-int Biblioteca::login(Pessoa *p,int tipoUsuario){
+int Biblioteca::login(int tipoUsuario){
 	
 	int idUsuario;
-	string senhaUsuario
+	string senhaUsuario;
 	
 	cout<<"Digite O seu ID e sua senha"<<endl;
 	
 	cin>>idUsuario>>senhaUsuario;
 	
-	p->setId(idUsuario);
-	p->setSenha(senhaUsuario);
-	
 	if(tipoUsuario == pessoaUsuario){
-		return administrador->pesquisaUsuario(p);
-			
 		
+		usuario->setId(idUsuario);
+		usuario->setSenha(senhaUsuario);
+		
+		if(administrador->pesquisaUsuario(usuario))
+			return 1;
+	
 		else
 			throw LoginInvalido();
 	}
 		
 	if(tipoUsuario == pessoaFuncionario){
-		return administrador->pesquisaFuncionario(p);
-			
+		
+		funcionario->setId(idUsuario);
+		funcionario->setSenha(senhaUsuario);
+		
+		if(administrador->pesquisaFuncionario(funcionario))
+			return 1 ;
 		
 		else
 			throw LoginInvalido();
@@ -158,7 +163,7 @@ void Biblioteca::menuUsuario(){
 	
 	string nomeLivro;
 	string autorLivro;
-	string editora;
+	string editoraLivro;
 	string nomeMultimidia;
 	string autorMultimidia;
 	int menu=1;
@@ -179,8 +184,8 @@ void Biblioteca::menuUsuario(){
 			cout<<"Devolver Multimidia(6)"<<endl;
 			cout<<"Imprimir livros alugados(7)"<<endl;
 			cout<<"Imprimir livros reservados(8)"<<endl;
-			cout<<"Pesquisar livro(9)"<<endl;
-			cout<<"Pesquisar multimidia(10)"<<endl;
+			cout<<"Pesquisar por livro(9)"<<endl;
+			cout<<"Pesquisar por multimidia(10)"<<endl;
 			cout<<"Sair do sistema(11)"<<endl;
 			
 			cin>>operacao;
