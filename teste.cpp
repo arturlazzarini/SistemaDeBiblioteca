@@ -33,7 +33,7 @@ int main(){
 		getline(ss, prod, '/');
 
 		Livro novo(titulo, autor, prod, true);     // Linha 35 a 37 ainda não testada dentro do sistema.
-                                                   // Teste do codigo feito apenas no arquivo txt                 
+                                                           // Teste do codigo feito apenas no arquivo txt                 
 		Acervo atual.adicionarLivro(novo);         // e imprimindo os itens (linha 39). 
 
 		cout << titulo << " / " << autor << " / " << prod << endl;
