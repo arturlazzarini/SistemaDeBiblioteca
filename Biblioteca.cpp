@@ -22,11 +22,13 @@ Biblioteca::~Biblioteca(){
 
 void Biblioteca::interfacePrincipal(){
 	
-    usuario = new Usuario(); 
+    	usuario = new Usuario(); 
 	funcionario = new Funcionario();
 	administrador= new Gerencia();
 	acervo= new Acervo();
-
+	
+	acervo->inicializarAcervo();
+	
 	determinaInterface();
 	
 	desalocaDados();
