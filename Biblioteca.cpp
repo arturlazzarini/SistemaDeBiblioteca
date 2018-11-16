@@ -132,7 +132,7 @@ int Biblioteca::login(Pessoa *p,int tipoUsuario){
 	
 	cout<<"Digite O seu ID e sua senha"<<endl;
 	
-	cin>>nomeUsuario>>senhaUsuario;
+	cin>>idUsuario>>senhaUsuario;
 	
 	p->setId(idUsuario);
 	p->setSenha(senhaUsuario);
