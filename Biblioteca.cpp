@@ -179,8 +179,8 @@ void Biblioteca::menuUsuario(){
 			cout<<"Devolver Multimidia(6)"<<endl;
 			cout<<"Imprimir livros alugados(7)"<<endl;
 			cout<<"Imprimir livros reservados(8)"<<endl;
-			cout<<"Pesquisar por livro(9)"<<endl;
-			cout<<"Pesquisar por multimidia(10)"<<endl;
+			cout<<"Pesquisar livro(9)"<<endl;
+			cout<<"Pesquisar multimidia(10)"<<endl;
 			cout<<"Sair do sistema(11)"<<endl;
 			
 			cin>>operacao;
