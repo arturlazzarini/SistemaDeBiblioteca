@@ -361,14 +361,19 @@ void Biblioteca::menuUsuario(){
 
 void Biblioteca::menuFuncionario(){
 	
-		int menu=1;
-		int operacao=0;
+	int menu=1;
+	int operacao=0;
+	string nomeLivro;
+	string autorLivro;
+	string editoraLivro;
+	string nomeMultimidia;
+	string autorMultimidia;
 	
 	while(menu){
-		
+
 		while(operacao<1||operacao>7){
 			
-			cout<<"Qual operacao voce deseja realizar?(1/2/3/4/5/6/7)"<<endl;
+			cout<<"Qual operacao voce deseja realizar?(1/2/3/4/5/6/7/8/9)"<<endl;
 			
 			cout<<"Adicionar livro ao acervo da bibliteca(1)"<<endl;
 			cout<<"Remover livro do acervo da biblioteca(2)"<<endl;
@@ -376,30 +381,65 @@ void Biblioteca::menuFuncionario(){
 			cout<<"Remover multimidia do acervo da biblioteca(4)"<<endl;
 			cout<<"Cadastrar novo usuario da biblioteca(5)"<<endl;
 			cout<<"Cadastrar novo funcionario da biblioteca(6)"<<endl;
-			cout<<"Sair do sistema(7)"<<endl;
+			cout<<"Imprimir colecao de livros(7)"<<endl;
+			cout<<"Imprimir colecao de multimidia(8)"<<endl;
+			cout<<"Sair do sistema(9)"<<endl;
 			
 			cin>>operacao;
 		}
 		
-		if(operacao==1)
-			funcionario->adicionarLivro();
+		if(operacao == 1){
+			
+			cout<<"Digite o titulo, o autor e a editora do livro que voce quer adicionar"<endl;
+			
+			cin>>nomeLivro>>autorLivro>>editoraLivro;
+			
+			funcionario->adicionarLivro(acervo,nomeLivro,autorLivro,editoraLivro);
+			}
+			
 		
-		if(operacao==2)	
-			funcionario->removerLivro();
+		if(operacao == 2){
+			
+			cout<<"Digite o titulo, o autor e a editora do livro que voce quer remover"<endl;
+			
+			cin>>nomeLivro>>autorLivro>>editoraLivro;
+			
+			funcionario->removerLivro(acervo,nomeLivro,autorLivro,editoraLivro);
+			}	
 		
-		if(operacao==3)
-			funcionario->adicionarMultimidia();
 		
-		if(operacao==4)	
-			funcionario->removerMultimidia();
+		if(operacao == 3){
+			
+			cout<<"Digite o titulo e o autor da multimidia que voce quer adicionar"<endl;
+			
+			cin>>nomeMultimidia>>autorMultimidia;
+			
+			funcionario->adicionarMultimidia(acervo,nomeMultimidia,autorMultimidia);
+			}	
+
+		if(operacao == 4){
+			
+			cout<<"Digite o titulo e o autor da multimidia que voce quer remover"<endl;
+			
+			cin>>nomeMultimidia>>autorMultimidia;
+			
+			funcionario->removerMultimidia(acervo,nomeMultimidia,autorMultimidia);
+			}		
+			
 		
-		if(operacao==5)	
-			funcionario->cadastrarUsuario();
+		if(operacao == 5)	
+			
 		
-		if(operacao==6)	
-			funcionario->cadastrarFuncionario();
+		if(operacao == 6)
+
+			
+		if(operacao == 7)	
+			acervo->listarLivros();
+			
+		if(operacao == 8)				
+			acervo->listarMultimidia();
 		
-		if(operacao==7)
+		if(operacao == 9)
 			menu=0;
 	}	
 }
