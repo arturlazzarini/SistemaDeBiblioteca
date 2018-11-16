@@ -363,11 +363,8 @@ void Biblioteca::menuFuncionario(){
 	
 	int menu=1;
 	int operacao=0;
-	string nomeLivro;
-	string autorLivro;
-	string editoraLivro;
-	string nomeMultimidia;
-	string autorMultimidia;
+	string nomeLivro,autorLivro,editoraLivro,nomeMultimidia,autorMultimidia;
+	string nomeUsuario,userUsuario,senhaUsuario,nomeFuncionario,userFuncionario,senhaFuncionario;
 	
 	while(menu){
 
@@ -427,11 +424,21 @@ void Biblioteca::menuFuncionario(){
 			}		
 			
 		
-		if(operacao == 5)	
-			
-		
-		if(operacao == 6)
+		if(operacao==5)
+			cout<<"Digite o nome completo"<<endl;
+			cin>>nomeUsuario;
+			cout<<"Digite o login e uma nova senha para o usuario"<<endl;
+			cin>>userUsuario>>senhaUsuario;
 
+			funcionario->cadastrarUsuario(administrador, nomeUsuario, senhaUsuario, userUsuario);
+		
+		if(operacao==6)
+			cout<<"Digite o nome completo"<<endl;
+			cin>>nomeFuncionario;
+			cout<<"Digite o login e uma nova senha para o funcionario"<<endl;
+			cin>>userFuncionario>>senhaFuncionario;
+
+			funcionario->cadastrarFuncionario(administrador, nomeFuncionario, senhaFuncionario, userFuncionario);	
 			
 		if(operacao == 7)	
 			acervo->listarLivros();
