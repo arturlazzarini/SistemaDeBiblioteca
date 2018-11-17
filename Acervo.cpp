@@ -182,19 +182,20 @@ void Acervo::inicializarAcervo(){
 	string titulo;
 	string autor;
 	string prod;
+	string tipo;
 
 	string line;
 
-	ifstream inFile; // inFile é o arquivo de leitura dos dados
+	ifstream inFileLivros; // inFile é o arquivo de leitura dos dados
 
-	inFile.open("livros.txt", ios::in); // abre o arquivo para leitura
+	inFileLivros.open("livros.txt", ios::in); // abre o arquivo para leitura
 
-	if (! inFile){
-		cout << "Arquivo txt nao pode ser aberto" << endl;
+	if (! inFileLivros){
+		cout << "Arquivo txt de livros nao pode ser aberto" << endl;
 		abort();
 	} 
 
-	while(getline(inFile, line)){
+	while(getline(inFileLivros, line)){
 		stringstream ss(line);
 		getline(ss, titulo, '/');
 		getline(ss, autor, '/');
@@ -202,9 +203,33 @@ void Acervo::inicializarAcervo(){
 
 		Livro novo(titulo, autor, prod,true);    
                                                                            
-		 adicionarLivro(novo);         
-
+		 adicionarLivro(novo); 
 	}
 
-	inFile.close();
+	inFileLivros.close();
+	
+	ifstream inFileMultimidia; // inFile é o arquivo de leitura dos dados
+
+	inFileMultimidia.open("Multimidias.txt", ios::in); // abre o arquivo para leitura
+
+	if (! inFileMultimidia){
+		
+		cout << "Arquivo txt de multimidia nao pode ser aberto" << endl;
+		abort();
+	} 
+
+	while(getline(inFileMultimidia, line)){
+		
+		stringstream ss(line);
+		getline(ss, titulo, '/');
+		getline(ss, autor, '/');
+		getline(ss, prod, '/');
+		getline(ss, tipo, '/');
+
+		Multimidia nova(titulo, autor, prod,tipo,true);    
+                                                                           
+		 adicionarMultimidia(nova); 
+	}
+	
+	inFileMultimidia.close();
 }
