@@ -410,7 +410,7 @@ void Biblioteca::menuUsuario(){
 				
 				cin>>autorMultimidia;
 				
-				acervo->procuraLivro(autorMultimidia,tipoPesquisa);
+				acervo->procuraMultimidia(autorMultimidia,tipoPesquisa);
 			}
 		}
 		
