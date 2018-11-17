@@ -73,9 +73,7 @@ void Usuario::imprimeLivrosAlugados(){
   }
 
   for(int i=0; i<_livrosAlugados.size(); i++){
-    cout<<"Título : "<<_livrosAlugados[i].getTitulo()<<endl;
-    cout<<"Autor : "<<_livrosAlugados[i].getAutor()<<endl;
-    cout<<"Editora : "<<_livrosAlugados[i].getEditora()<<endl;
+	_livrosAlugados[i].imprimirCampos();
   }
 }
 
@@ -87,9 +85,7 @@ void Usuario::imprimeMultimidiaAlugados(){
   }
 
   for(int i=0; i<_multimidiaAlugados.size(); i++){
-    cout<<"Título : "<<_multimidiaAlugados[i].getTitulo()<<endl;
-    cout<<"Autor : "<<_multimidiaAlugados[i].getAutor()<<endl;
-    cout<<"Editora : "<<_multimidiaAlugados[i].getEditora()<<endl;
+	_multimidiaAlugados[i].imprimirCampos();
   }
 }
 
@@ -101,9 +97,7 @@ void Usuario::imprimeLivrosReservados(){
   }
 
   for(int i=0; i<_livrosReservados.size(); i++){
-    cout<<"Título : "<<_livrosReservados[i].getTitulo()<<endl;
-    cout<<"Autor : "<<_livrosReservados[i].getAutor()<<endl;
-    cout<<"Editora : "<<_livrosReservados[i].getEditora()<<endl;
+	_livrosReservados[i].imprimirCampos();
   }
 }
 
@@ -115,9 +109,7 @@ void Usuario::imprimeMultimidiaReservados(){
   }
 
   for(int i=0; i<_multimidiaReservados.size(); i++){
-    cout<<"Título : "<<_multimidiaReservados[i].getTitulo()<<endl;
-    cout<<"Autor : "<<_multimidiaReservados[i].getAutor()<<endl;
-    cout<<"Editora : "<<_multimidiaReservados[i].getEditora()<<endl;
+	_multimidiaReservados[i].imprimirCampos();
+
   }
 }
-
