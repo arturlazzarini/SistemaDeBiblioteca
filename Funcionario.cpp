@@ -5,29 +5,29 @@ Funcionario :: Funcionario(){}
 Funcionario :: Funcionario(string nome, string senha, int id) : Pessoa(nome,senha,id){}
 
 //Adiciona novos livros ao acervo da biblioteca
-void Funcionario::adicionarlivros(Acervo *acervo,string titulo, string autor, string prod){
+void Funcionario::adicionarlivros(Acervo *acervo,string titulo, string autor, string editora){
 	
-	Livro novo(titulo,autor,prod,true);
+	Livro novo(titulo,autor,editora,true);
 	acervo->adicionarlivro(novo);
 }
 
 //Remove novos livros do acervo da biblioteca
-void Funcionario::removerLivros(Acervo *acervo,string titulo, string autor, string prod){
+void Funcionario::removerLivros(Acervo *acervo,string titulo, string autor, string editora){
 	
-	Livro livro(titulo,autor, prod,true);
+	Livro livro(titulo,autor, editora,true);
 	acervo->removerLivro(livro);
 }
 //Adiciona novas multimidias ao acervo da biblioteca
-void Funcionario::adicionarMultimidias(Acervo *acervo,string titulo, string autor, string produtora, string tipo){
+void Funcionario::adicionarMultimidias(Acervo *acervo,string titulo, string autor, string editora, string tipo){
 	
-	Multimidia nova(titulo,autor,produtora,tipo,true);
+	Multimidia nova(titulo,autor,editora,tipo,true);
 	acervo->adicionarMultimidia(nova);
 }
 
 //Remove multimidia do acervo da biblioteca
-void Funcionario::removerMultimidias(Acervo *acervo,string titulo, string autor,string produtora, string tipo){
+void Funcionario::removerMultimidias(Acervo *acervo,string titulo, string autor,string editora, string tipo){
 	
-	Multimidia retirada(titulo,autor,produtora,tipo,true);
+	Multimidia retirada(titulo,autor,editora,tipo,true);
 	acervo->adicionarMultimidia(retirada);
 }
 
