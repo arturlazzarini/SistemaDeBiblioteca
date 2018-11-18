@@ -4,7 +4,7 @@
 
 /**
 *@file Usuario.hpp
-*@brief Usuario
+*@brief Classe Usuario
 *@author x
 *@version 1.0
 *@date 18/11/2018
