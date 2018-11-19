@@ -2,7 +2,13 @@
 
 Livro::Livro(){}
 
-Livro::Livro(string titulo, string autor, string editora, bool disponibilidade) : Item(titulo,autor,editora,disponibilidade){}
+Livro::Livro(string titulo, string autor, string editora, bool disponibilidade) : Item(titulo,autor,editora){
+	_disponibilidade = disponibilidade;
+}
+
+bool Livro::setDisponibilidade(bool disponibilidade){
+	_disponibilidade = disponibilidade;
+}
 
 bool Livro::isDisponivel(){
 	return this->_disponibilidade;
