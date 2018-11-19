@@ -15,6 +15,7 @@ class Multimidia : public Item{
 		Multimidia(string,string,string,string,bool);
 		void setTipo(string);
 		string getTipo();
+		void setDisponibilidade(bool);
 		bool isDisponivel();
 		void mudarDisponibilidade();
 		void imprimeCampos();
