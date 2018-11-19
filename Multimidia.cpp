@@ -2,8 +2,9 @@
 
 Multimidia::Multimidia(){}
 
-Multimidia::Multimidia(string titulo, string autor, string editora,string tipo, bool disponibilidade) : Item(titulo,autor,editora,disponibilidade){
+Multimidia::Multimidia(string titulo, string autor, string editora,string tipo, bool disponibilidade) : Item(titulo,autor,editora){
 	setTipo(tipo);
+	setDisponibilidade(disponibilidade);
 }
 
 void Multimidia::setTipo(string tipo){
@@ -11,6 +12,10 @@ void Multimidia::setTipo(string tipo){
 }
 string Multimidia::getTipo(){
 	return this->_tipoMultimidia;
+}
+
+bool Multimidia::setDisponibilidade(bool disponibilidade){
+	_disponibilidade = disponibilidade;
 }
 
 bool Multimidia::isDisponivel(){
