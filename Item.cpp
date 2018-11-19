@@ -2,11 +2,10 @@
 
 Item::Item(){}
 
-Item::Item(string titulo, string autor, string editora, bool disponibilidade){
+Item::Item(string titulo, string autor, string editora){
 	this->_titulo = titulo;
 	this->_autor = autor;
 	this->_editora = editora;
-	this->_disponibilidade = disponibilidade;
 }
 
 void Item::setTitulo(string titulo){
