@@ -18,7 +18,7 @@ class Item{
 	public:
 		
 		Item();
-		Item(string,string,string,bool);
+		Item(string,string,string);
 		void setTitulo(string);
 		void setAutor(string autor);	
 		void setEditora(string);
