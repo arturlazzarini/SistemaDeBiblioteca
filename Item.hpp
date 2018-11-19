@@ -14,7 +14,6 @@ class Item{
 		string _titulo;
 		string _autor;
 		string _editora;
-		bool _disponibilidade;
 		
 	public:
 		
@@ -27,7 +26,6 @@ class Item{
 		string getAutor();		
 		string getEditora();			
 		virtual void imprimeCampos();
-		virtual bool isDisponivel();
 
 };
 
