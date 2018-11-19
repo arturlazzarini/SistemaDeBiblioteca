@@ -12,6 +12,7 @@ class Livro : public Item{
 
 		Livro();
 		Livro(string,string,string,bool);
+		void setDisponibilidade(bool);
 		bool isDisponivel();
 		void mudarDisponibilidade();
 		void imprimeCampos();
