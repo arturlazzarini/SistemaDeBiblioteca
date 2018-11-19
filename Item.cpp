@@ -32,9 +32,7 @@ string Item::getAutor(){
 string Item::getEditora(){
 		return _editora;
 }
-bool Item::isDisponivel(){
-		return this->_disponibilidade;
-}			
+			
 void Item::imprimeCampos(){
 
 	cout<<"Titulo : "<<getTitulo()<<endl;
