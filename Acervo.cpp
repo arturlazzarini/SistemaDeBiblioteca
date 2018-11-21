@@ -179,12 +179,14 @@ void Acervo::removerMultimidia(Multimidia multimidia){
 void Acervo::adicionarMultimidia(Multimidia multimidia){
 		
 	_acervoMultimidia.push_back(multimidia);
+	setAcervoTotalMultimidia(_acervoMultimidia.size());
 	std::cout<<"Multimidia adicionada com sucesso"<<std::endl;		
 }
 
 void Acervo::adicionarLivro(Livro livro){
 	
 	_acervoLivro.push_back(livro);
+	setAcervoTotalLivro(_acervoLivro.size());
 	std::cout<<"Livro adicionado com sucesso"<<std::endl;
 }
 
