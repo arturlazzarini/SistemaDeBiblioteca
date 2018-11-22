@@ -42,6 +42,7 @@ public:
 	void menuFuncionario();
 	int login(int tipoUsuario);
 	void desalocaDados();
+	void imprimeLinhas();
 	~Biblioteca();
 };
 class LoginInvalido: public std::exception{
@@ -59,4 +60,3 @@ class EntradaInvalida: public std::exception{
         }
 };
 #endif
-
