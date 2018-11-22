@@ -201,7 +201,7 @@ int Biblioteca::login(int tipoUsuario){
 	int idUsuario;
 	string senhaUsuario;
 	
-	cout<<"Digite O seu ID e sua senha\n"<<endl;
+	cout<<"Digite o seu ID e sua senha\n"<<endl;
 	
 	cin>>idUsuario>>senhaUsuario;
 	
