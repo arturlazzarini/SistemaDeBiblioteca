@@ -25,126 +25,177 @@ int Acervo::getAcervoTotal(){
 
 int Acervo::getAcervoTotalLivro(){
 
-	return _acervoTotalLivro ;
+	return this->_acervoTotalLivro ;
 }
 
 int Acervo::getAcervoTotalMultimidia(){
 
-	return  _acervoTotalMultimidia;
+	return  this->_acervoTotalMultimidia;
 }
 
 void Acervo::listarLivros(){
 
-	for(int i=0;i<_acervoTotalLivro;i++){
+	for(int i=0;i<_acervoLivro.size();i++){
 
-			acervoLivro[i].imprimirCampos();
+			_acervoLivro[i].imprimeCampos();
 	}
 
 }
 
 void Acervo::listarMultimidia(){
 
-	for(int i=0;i<_acervoTotalMultimidia;i++){
+	for(int i=0;i<_acervoMultimidia.size();i++){
 
-			acervoMultimidia[i].imprimirCampos();
+			_acervoMultimidia[i].imprimeCampos();
 
 	}
 }
 
-void Acervo::procuraLivros(string livro,int campo){
+void Acervo::procuraLivro(string livro,int campo){
 	
+		int naoExiste=0;
+		int i;
+		
 		if(campo==1){
 			
-			for(i=0;i < _acervoTotalLivro;i++){
+			for(i=0;i <_acervoLivro.size();i++){
 			
-				if(_acervoLivro[i].getTitulo() == livro)
-					_acervoLivro[i].imprimirCampos();
+				if(_acervoLivro[i].getTitulo() == livro){
+					_acervoLivro[i].imprimeCampos();
+					naoExiste--;
+				}
+				naoExiste++;
 			}
+			if(naoExiste==_acervoLivro.size())
+				cout<<"Esse livro nao existe na colecao\n"<<endl;
 		}
 		if(campo==2){
 			
-			for(i=0;i < _acervoTotalLivro;i++){
+			for(i=0;i <_acervoLivro.size();i++){
 			
-				if(acervoLivro[i].getAutor()== livro)
-					acervoLivro[i].imprimirCampos();
+				if(_acervoLivro[i].getAutor()== livro){
+					_acervoLivro[i].imprimeCampos();
+					naoExiste--;
+				}
+				
+				naoExiste++;
 			}
+			if(naoExiste==_acervoLivro.size())
+				cout<<"Esse livro nao existe na colecao\n"<<endl;
 		}
 		if(campo==3){
 			
-			for(i=0;i < _acervoTotalLivro;i++){
+			for(i=0;i < _acervoLivro.size();i++){
 			
-				if(acervoLivro[i].getEditora() == livro)
-					acervoLivro[i].imprimirCampos();
+				if(_acervoLivro[i].getEditora() == livro){
+					_acervoLivro[i].imprimeCampos();
+					naoExiste--;
+				}
+				
+				naoExiste++;
 			}
+			if(naoExiste==_acervoLivro.size())
+				cout<<"Esse livro nao existe na colecao\n"<<endl;
 		}			
 }
 
 void Acervo::procuraMultimidia(string multimidia, int campo){
 	
+		int naoExiste=0;
+		int i;
+		
 		if(campo==1){
 			
-			for(i=0;i < _acervoTotalMultimidia;i++){
+			for(i=0;i < _acervoMultimidia.size();i++){
 			
-				if(acervoMultimidia[i].getTitulo() == multimidia)
-					acervoMultimidia[i].imprimirCampos();
+				if(_acervoMultimidia[i].getTitulo() == multimidia){
+					_acervoMultimidia[i].imprimeCampos();
+					naoExiste--;
+				}
+				naoExiste++;
 			}
+			if(naoExiste==_acervoMultimidia.size())
+				cout<<"Essa multimidia nao existe na colecao\n"<<endl;
 		}
 		
 		if(campo==2){
 			
-			for(i=0; i < _acervoTotalMultimidia; i++){
+			for(i=0; i < _acervoMultimidia.size(); i++){
 			
-				if(acervoMultimidia[i].getAutor() == multimidia)
-					acervoMultimidia[i].imprimirCampos();
+				if(_acervoMultimidia[i].getAutor() == multimidia){
+					_acervoMultimidia[i].imprimeCampos();
+					naoExiste--;
+				}
+				naoExiste++;
 			}
+			if(naoExiste==_acervoMultimidia.size())
+				cout<<"Essa multimidia nao existe na colecao\n"<<endl;
 			
+		}	
 }
 
-void Acervo::removeLivro(Livro livro){
+void Acervo::removerLivro(Livro livro){
+	int naoExiste=0;
+	int i;
 	
-	for(i=0;i < _acervoTotalLivro;i++){
+	for(i=0;i < _acervoLivro.size();i++){
 		
-		if(acervoLivro[i].nome == livro.nome){
+		if(_acervoLivro[i].getTitulo() == livro.getTitulo()){
 			
-			acervoLivro.erase(acervoLivro.begin()+i);
-			setAcervoTotalLivro(acervoLivro.size());
-			std::cout<<"Livro removido com sucesso"<<std::endl;
+			_acervoLivro.erase(_acervoLivro.begin()+i);
+			setAcervoTotalLivro(_acervoLivro.size());
+			std::cout<<"Livro removido com sucesso\n"<<std::endl;
+			naoExiste=-1;
 			break;
 		}
+		naoExiste++;
 	}
-}
+	if(naoExiste==_acervoLivro.size())
+		cout<<"Esse livro nao existe na colecao\n"<<endl;
+}	
 
-void Acervo::removeMultimidia(Multimidia multimidia){
+
+void Acervo::removerMultimidia(Multimidia multimidia){
 	
-		for(i=0;i < acervoLivro.size();i++){
+	int naoExiste=0;
+	int i;
+	
+		for(i=0;i < _acervoMultimidia.size();i++){
 		
-			if(acervoMultimidia[i].nome == multimidia.nome){
+			if(_acervoMultimidia[i].getTitulo() == multimidia.getTitulo()){
 				
-				acervoLivro.erase(acervoLivro.begin()+i);
-				setAcervoTotalMultimidia(acervoLivro.size());
-				std::cout<<"Multimidia removida com sucesso"<<std::endl;
+				_acervoMultimidia.erase(_acervoMultimidia.begin()+i);
+				setAcervoTotalMultimidia(_acervoMultimidia.size());
+				std::cout<<"Multimidia removida com sucesso\n"<<std::endl;
+				naoExiste=-1;
 				break;
-		}
+			}
+			naoExiste++;
 			
-	}
-}
+		}
+		if(naoExiste==_acervoMultimidia.size())
+			cout<<"Essa multimidia nao existe na colecao\n"<<endl;
+			
+}	
+
 void Acervo::adicionarMultimidia(Multimidia multimidia){
-	
-	acervoMultimidia.push_back(multimidia);
-	std::cout<<"Livro adicionado com sucesso"<<std::endl;
+		
+	_acervoMultimidia.push_back(multimidia);
+	setAcervoTotalMultimidia(_acervoMultimidia.size());	
 }
 
 void Acervo::adicionarLivro(Livro livro){
 	
-	acervoLivro.push_back(livro);
-	std::cout<<"Livro adicionado com sucesso"<<std::endl;
+	_acervoLivro.push_back(livro);
+	setAcervoTotalLivro(_acervoLivro.size());
 }
 
 void Acervo::mudarDisponibilidadeLivro(Livro livro){
-
-	int naoexiste=0;
 	
-	for(i=0;i < _acervoTotalLivro;i++){
+	int i;
+	int naoExiste=0;
+	
+	for(i=0;i < _acervoLivro.size();i++){
 			
 			if(_acervoLivro[i].getTitulo() == livro.getTitulo() && _acervoLivro[i].getAutor() == livro.getAutor()){
 				_acervoLivro[i].mudarDisponibilidade();
@@ -153,16 +204,17 @@ void Acervo::mudarDisponibilidadeLivro(Livro livro){
 			naoExiste++;
 		}
 
-		if(naoExiste == _acervoMultimidia){
-			cout<<"Este livro nao esta disponivel"<<endl;
+		if(naoExiste == _acervoLivro.size()){
+			cout<<"Impossivel realizar operacao:Este livro nao esta na colecao\n"<<endl;
 		}
 		
 }
 void Acervo::mudarDisponibilidadeMultimidia(Multimidia multimidia){
 	
-	int naoexiste=0;
+	int i;
+	int naoExiste=0;
 	
-	for(i=0;i < _acervoTotalMultimidia;i++){
+	for(i=0;i < _acervoMultimidia.size();i++){
 			
 			if(_acervoMultimidia[i].getTitulo() == multimidia.getTitulo() && _acervoMultimidia[i].getAutor() == multimidia.getAutor()){
 				
@@ -172,11 +224,11 @@ void Acervo::mudarDisponibilidadeMultimidia(Multimidia multimidia){
 			naoExiste++;
 		}
 		
-		if(naoExiste == _acervoMultimidia){
-			cout<<"Esta multimidia nao esta disponivel"<<endl;
+		if(naoExiste == _acervoMultimidia.size()){
+			cout<<"Impossivel realizar operacao: Esta multimidia nao esta na colecao\n"<<endl;
 		}
 }
-	
+
 void Acervo::inicializarAcervo(){
 	
 	string titulo;
@@ -186,16 +238,16 @@ void Acervo::inicializarAcervo(){
 
 	string line;
 
-	ifstream inFileLivros; // inFile é o arquivo de leitura dos dados
+	ifstream inFileLivro; // inFile é o arquivo de leitura dos dados
 
-	inFileLivros.open("livros.txt", ios::in); // abre o arquivo para leitura
+	inFileLivro.open("Livros.txt", ios::in); // abre o arquivo para leitura
 
-	if (! inFileLivros){
-		cout << "Arquivo txt de livros nao pode ser aberto" << endl;
+	if (!inFileLivro){
+		cout << "Arquivo txt de livros nao pode ser aberto\n" << endl;
 		abort();
 	} 
 
-	while(getline(inFileLivros, line)){
+	while(getline(inFileLivro, line)){
 		stringstream ss(line);
 		getline(ss, titulo, '/');
 		getline(ss, autor, '/');
@@ -206,15 +258,15 @@ void Acervo::inicializarAcervo(){
 		 adicionarLivro(novo); 
 	}
 
-	inFileLivros.close();
+	inFileLivro.close();
 	
 	ifstream inFileMultimidia; // inFile é o arquivo de leitura dos dados
 
 	inFileMultimidia.open("Multimidias.txt", ios::in); // abre o arquivo para leitura
 
-	if (! inFileMultimidia){
+	if (!inFileMultimidia){
 		
-		cout << "Arquivo txt de multimidia nao pode ser aberto" << endl;
+		cout << "Arquivo txt de multimidia nao pode ser aberto\n" << endl;
 		abort();
 	} 
 
@@ -232,4 +284,34 @@ void Acervo::inicializarAcervo(){
 	}
 	
 	inFileMultimidia.close();
+}
+
+int Acervo::pesquisaLivro(Livro livro){
+	
+	int i;
+	
+	for(i=0;i < _acervoLivro.size();i++){
+			
+			if(_acervoLivro[i].getTitulo() == livro.getTitulo() && _acervoLivro[i].getAutor() == livro.getAutor()){
+				
+				return 1;
+			}
+		}
+
+		return 0;
+}
+
+int Acervo::pesquisaMultimidia(Multimidia multimidia){
+	
+	int i;
+	
+	for(i=0;i < _acervoMultimidia.size();i++){
+			
+			if(_acervoMultimidia[i].getTitulo() == multimidia.getTitulo() && _acervoMultimidia[i].getAutor() == multimidia.getAutor()){
+				
+				return 1;
+			}
+		}
+		
+		return 0;
 }
