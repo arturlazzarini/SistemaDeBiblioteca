@@ -367,8 +367,7 @@ void Biblioteca::menuUsuario(){
 		}
 		
 		if(operacao==3){
-			cout<<"\n--------------------------------------------------------------------------------\n"<<endl;
-			cin.ignore();		
+			cout<<"\n--------------------------------------------------------------------------------\n"<<endl;	
 			cout<<"Digite o titulo e o autor do livro que voce quer devolver\n"<<endl;
 			
 			getline(cin,nomeLivro);
@@ -393,8 +392,7 @@ void Biblioteca::menuUsuario(){
 			
 			getline(cin,nomeMultimidia);
 			getline(cin,autorMultimidia);
-
-			cin>>tipoMultimidia;
+			getline(cin,tipoMultimidia);
 			
 			Multimidia multimidiaReservado;
 			
