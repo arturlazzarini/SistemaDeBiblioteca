@@ -1,4 +1,4 @@
-#define CATCH_CONFIG_ALL_PARTS
+#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
 #include "Gerencia.hpp"
@@ -14,7 +14,7 @@ TEST_CASE("Testa cadastro e pesquisa de usuarios"){
 
 	if(atual.pesquisaUsuario(0000, "0000") == 0){
 		atual.setUsuarioCadastrado(novo);
-		CHECK(atual.pesquisaUsuario(0000, "0000") == 1);
+		REQUIRE(atual.pesquisaUsuario(0000, "0000") == 1);
 	}
 }
 
@@ -26,7 +26,7 @@ TEST_CASE("Testa cadastro e pesquisa de funcionario"){
 
 	if(atual.pesquisaFuncionario(0000, "0000") == 0){
 		atual.setFuncionarioCadastrado(novo);
-		CHECK(atual.pesquisaFuncionario(0000, "0000") == 1);
+		REQUIRE(atual.pesquisaFuncionario(0000, "0000") == 1);
 	}
 
 }
