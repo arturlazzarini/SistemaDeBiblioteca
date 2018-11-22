@@ -1,0 +1,22 @@
+OBS: fiz o que pude porem 3h da manha preciso dormir kkkk
+
+Consigo apagar um livro passando apenas o nome dele
+e deixando os outros campos nulos. Porem nao consigo com editora ou autor.
+
+Consigo cadastrar um livro vazio
+
+Loopings infinitos ao colocar numero ou string em opçao (s/n)
+e ao colocar string ou char em opçao numerica
+
+Para diferenciar reserva de aluguel, ao alugar o livro deve ser retirado do acervo e ao reservar NAO. a reserva é
+online o livro ainda permanece.
+
+A editora nao pode ter 2 nomes
+
+Deve haver opçao de busca no acervo pro usuario, como vai saber qual livro quer alugar?
+
+Ao tentar remover uma multimidia inexistente nao exibe erro
+
+Porque a classe item tem a funcao de imprimirCampos e a Multimidia e Livros tmb? Precisa fazer override como boa pratica
+
+MAKEFILE
