@@ -1,4 +1,4 @@
-#define CATCH_CONFIG_ALL_PARTS
+#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
 #include "Item.hpp"
@@ -11,9 +11,9 @@ TEST_CASE("Testa Construtor e disponibilidade"){
 	novo.setDisponibilidade(true);
 
 	if(novo.isDisponivel() == true){
-		CHECK(novo.getTipo() == "Filme");
+		REQUIRE(novo.getTipo() == "Filme");
 		novo.mudarDisponibilidade();
-		CHECK(novo.isDisponivel() == false);
+		REQUIRE(novo.isDisponivel() == false);
 	}
 
 }
