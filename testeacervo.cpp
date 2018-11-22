@@ -1,4 +1,4 @@
-#define CATCH_CONFIG_ALL_PARTS
+#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
 #include "Acervo.hpp"
@@ -18,7 +18,7 @@ TEST_CASE("Teste adicionar, remover e pesquisar livro"){
 
 	if(atual.pesquisaLivro(novo) == 1 && atual.getAcervoTotalLivro() == 1){
  		atual.removerLivro(novo);
- 		CHECK(atual.pesquisaLivro(novo) == 0);
+ 		REQUIRE(atual.pesquisaLivro(novo) == 0);
 	}
 
 }
@@ -35,7 +35,7 @@ TEST_CASE("Teste adicionar, remover e pesquisar multimidia"){
 
 	if(atual.pesquisaMultimidia(novo) == 1 && atual.getAcervoTotalMultimidia() == 1){
  		atual.removerMultimidia(novo);
- 		CHECK(atual.pesquisaMultimidia(novo) == 0);
+ 		REQUIRE(atual.pesquisaMultimidia(novo) == 0);
 	}
 
 }
@@ -56,7 +56,7 @@ TEST_CASE("Sets e get acervo total e mudança de disponibilidade"){
 	atual.mudarDisponibilidadeMultimidia(multi);
 
 	if(livro.isDisponivel() == false && multi.isDisponivel() == false){
-		CHECK(atual.getAcervoTotal() == (atual.getAcervoTotalLivro() + atual.getAcervoTotalMultimidia()));
+		REQUIRE(atual.getAcervoTotal() == (atual.getAcervoTotalLivro() + atual.getAcervoTotalMultimidia()));
 	}
 
 }
