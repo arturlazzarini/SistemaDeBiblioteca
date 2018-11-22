@@ -1,37 +1,36 @@
 #include "Pessoa.hpp"
 
-
-
-
-		Pessoa::Pessoa(string nome, string senha, int id){
-			setNome(nome);
-			setSenha(senha);
-			setId(id);
-			
-		}
+	Pessoa::Pessoa(){}
 	
-		void Pessoa::setNome(string nome){
-			this->_nome = nome;
-		}
-		
-		void Pessoa::setSenha(string senha){
-			this->_senha = senha;
-		}
-		
-		void Pessoa::setId(int id){
+	Pessoa::Pessoa(string nome, string senha, int id){
+		setNome(nome);
+		setSenha(senha);
+		setId(id);
 			
-			this->_id = id;
-		}
+	}
+	
+	void Pessoa::setNome(string nome){
+		this->_nome = nome;
+	}
 		
-		string Pessoa::getNome(){
-			return _nome;
-		}
+	void Pessoa::setSenha(string senha){
+		this->_senha = senha;
+	}
 		
-		string Pessoa::getSenha(){
-			return _senha;
-		}
+	void Pessoa::setId(int id){
+			
+		this->_id = id;
+	}
 		
-		int Pessoa::getId(){
-			return _id;
-		}
+	string Pessoa::getNome(){
+		return _nome;
+	}
+		
+	string Pessoa::getSenha(){
+		return _senha;
+	}
+		
+	int Pessoa::getId(){
+		return _id;
+	}
 	
