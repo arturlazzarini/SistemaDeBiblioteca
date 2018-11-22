@@ -7,14 +7,14 @@ Multimidia::Multimidia(string titulo, string autor, string editora,string tipo, 
 }
 
 void Multimidia::setTipo(string tipo){
-	this->tipoMultimidia=tipo;
+	this->_tipoMultimidia=tipo;
 }
 string Multimidia::getTipo(){
-	return this->tipoMultimidia;
+	return this->_tipoMultimidia;
 }
 
 bool Multimidia::isDisponivel(){
-	return this->_disponivel;
+	return this->_disponibilidade;
 }
 
 void Multimidia::mudarDisponibilidade(){
@@ -23,9 +23,9 @@ void Multimidia::mudarDisponibilidade(){
 
 void Multimidia::imprimeCampos(){
 
-	cout<<"Título : "<<getTitulo()<<endl;
-	cout<<"Autor : "<<getAutor()<<endl;
-	cout<<"Produtora : "<<getEditora()<<endl;
-	cout<<"Tipo : "<<getTipo()<<endl;
+	cout<<"\nTitulo : "<<getTitulo()<<endl;
+	cout<<"\nAutor : "<<getAutor()<<endl;
+	cout<<"\nProdutora : "<<getEditora()<<endl;
+	cout<<"\nTipo : "<<getTipo()<<endl;
 	
 }
