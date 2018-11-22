@@ -1,4 +1,4 @@
-#define CATCH_CONFIG_ALL_PARTS
+#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
 #include "Pessoa.hpp"
@@ -15,7 +15,7 @@ TEST_CASE("Testa Construtor"){
 	novo.setId(0000);
 
 	if(novo.getNome() == "Admin" && novo.getSenha() == "0000"){
-		CHECK(novo.getId() == 0000);
+		REQUIRE(novo.getId() == 0000);
 	}
 
 }
@@ -32,7 +32,7 @@ TEST_CASE("Testa funcoes com livro"){
 	if(livro.isDisponivel() == false){
 		novo.devolverLivro("Guerra e Paz");
 		livro.mudarDisponibilidade();
-		CHECK(livro.isDisponivel() == true);
+		REQUIRE(livro.isDisponivel() == true);
 	}
 
 }
@@ -49,7 +49,7 @@ TEST_CASE("Testa funcoes com multimidia"){
 	if(multi.isDisponivel() == false){
 		novo.devolverMultimidia("O Poderoso Chefao");
 		multi.mudarDisponibilidade();
-		CHECK(livro.isDisponivel() == true);
+		REQUIRE(livro.isDisponivel() == true);
 	}
 
 }
