@@ -1,4 +1,4 @@
-#define CATCH_CONFIG_ALL_PARTS
+#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
 #include "Pessoa.hpp"
@@ -21,7 +21,7 @@ TEST_CASE("Testa funcoes para adicionar ou remover livros"){
 
 	if(atual.pesquisaLivro(livro) == 1){
 		novo.removerLivros(atual, "Guerra e Paz", "Liev Tolstoi", "Globo");
-		CHECK(atual.pesquisaLivro(livro) == 0);
+		REQUIRE(atual.pesquisaLivro(livro) == 0);
 	}
 
 }
@@ -38,7 +38,7 @@ TEST_CASE("Testa funcoes para adiconar ou remover multimidias"){
 
 	if(atual.pesquisaMultimidia(multi)  == 1){
 		novo.removerMultimidias(atual, "O Poderoso Chefao", "Francis Ford Coppola", "Paramount", "Filme");
-		CHECK(atual.pesquisaMultimidia(multi)  == 0);
+		REQUIRE(atual.pesquisaMultimidia(multi)  == 0);
 	}
 
 }
@@ -54,11 +54,11 @@ TEST_CASE("Testa cadastro de usuarios e funcionarios"){
 	Funcionario adm02 = novo.cadastrarUsuario("Admin02", "0002", 0002);
 
 	if(adm01.getNome() == "Admin01" && adm01.getSenha == "0001"){
-		CHECK(adm01.getId() == 0001);
+		REQUIRE(adm01.getId() == 0001);
 	}
 
 	if(adm02.getNome() == "Admin02" && adm01.getSenha == "0002"){
-		CHECK(adm01.getId() == 0002);
+		REQUIRE(adm01.getId() == 0002);
 	}
 
 }
