@@ -1,22 +1,21 @@
 #ifndef BIBLIOTECA_HPP
 #define BIBLIOTECA_HPP
 
-/**
-*@file Biblioteca.hpp
-*@brief Classe Biblioteca
-*@author x
-*@version 1.0
-*@date 17/11/2018
-*/
-
-#include <iostream>
+#include <fstream>
 #include <cstdlib>
+#include <iomanip>
+#include <iostream>
 #include <exception>
-#include <string>
+#include <string.h>
+
 #include "Funcionario.hpp"
 #include "Gerencia.hpp"
 #include "Usuario.hpp"
 #include "Acervo.hpp"
+#include "Item.hpp"
+#include "Pessoa.hpp"
+#include "Multimidia.hpp"
+#include "Livro.hpp"
 
 using std::cout;
 using std::cin;
@@ -34,65 +33,16 @@ private:
 
 public:
 	
-	
-	/**
-	*@brief construtor de Biblioteca
-	*@return Biblioteca
-	*/
 	Biblioteca();
-	
-	/**
-	*@brief Destrutor de Biblioteca
-	*/
-	~Biblioteca();
-	
-	/**
-	*@brief interfacePrincipal
-	*/
 	void interfacePrincipal();
-	
-	/**
-	*@brief interfaceUsuario
-	*@param interfaceTipo
-	*/
-	void interfaceUsuario(int interfaceTipo);
-	
-	/**
-	*@brief telaInicial
-	*@param tipoUsuario
-	*@return inteiro
-	*/
+	int determinaInterface();
+	void interfaceUsuario();
 	int telaInicial(int tipoUsuario);
-	
-	/**
-	*@brief menuUsuario
-	*@param acesso
-	*/
-	void menuUsuario(int &acesso);
-	
-	/**
-	*@brief menuFuncionario
-	*@param acesso
-	*/
-	void menuFuncionario(int &acesso);
-	
-	/**
-	*@brief login
-	*@param tipoUsuario
-	@return inteiro
-	*/
+	void menuUsuario();
+	void menuFuncionario();
 	int login(int tipoUsuario);
-	
-	/**
-	*@brief interfaceFuncionario
-	*/
-	void interfaceFuncionario();
-	
-	/**
-	*@brief desalocaDados
-	*/
 	void desalocaDados();
-
+	~Biblioteca();
 };
 class LoginInvalido: public std::exception{
 
@@ -101,6 +51,12 @@ class LoginInvalido: public std::exception{
             return "LoginInvalido";
         }
 };
+class EntradaInvalida: public std::exception{
 
+        virtual const char* what()const throw(){
+
+            return "EntradaInvalida";
+        }
+};
 #endif
 
