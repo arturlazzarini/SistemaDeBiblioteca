@@ -4,20 +4,13 @@
 const int pessoaUsuario = 1;
 const int pessoaFuncionario = 2;
 
-Biblioteca::Biblioteca(){
+Biblioteca::Biblioteca()
+{
 		
 	usuario = nullptr;
 	funcionario = nullptr;
 	administrador = nullptr;
 	acervo = nullptr;
-}
-	
-Biblioteca::~Biblioteca(){
-	
-	delete usuario;
-	delete funcionario;
-	delete administrador;
-	delete acervo;
 }
 
 void Biblioteca::interfacePrincipal(){
@@ -27,62 +20,85 @@ void Biblioteca::interfacePrincipal(){
 	administrador= new Gerencia();
 	acervo= new Acervo();
 	
+	Usuario padrao("Padrao","1234",4567);
+	
+	Funcionario base("Base","0000",1234);
+	
+	administrador->setUsuarioCadastrado(padrao);
+	
+	administrador->setFuncionarioCadastrado(base);
+	
 	acervo->inicializarAcervo();
 	
-	determinaInterface();
+	interfaceUsuario();
 	
 	desalocaDados();
 }
 
 //identifica o tipo da pessoa que acessa o sistema para disponibilizar sua respectiva interface
-void Biblioteca::determinaInterface(){
+int Biblioteca::determinaInterface(){
 	
 	int interface = 0;
 	
-	while(interfacea<pessoaUsuario||interface>pessoaFuncionario){
+	while(interface<pessoaUsuario||interface>pessoaFuncionario){
 		
-		cout<<"Voce deseja acessar o sistema como:"<<endl;
-		cout<<"Usuario da Biblioteca(1)"<<endl;
-		cout<<"Funcionario da Biblioteca(2)"<<endl;
+		cout<<"Voce deseja acessar o sistema como:\n"<<endl;
+		cout<<"Usuario da Biblioteca(1)\n"<<endl;
+		cout<<"Funcionario da Biblioteca(2)\n"<<endl;
 
 		cin>>interface;
 	}
 	
-	interfaceUsuario(interface);
+	return interface;
 }
 
 //interface com login/cadastro e menu para usuario/funcionario
-void Biblioteca::interfaceUsuario(int interfaceTipo){
+void Biblioteca::interfaceUsuario(){
 	
 	int execucao =1;
 	int acesso=0;
 	char decisao=' ';
+	int interfaceTipo=0;
+
+	
 	
 	while(execucao){
-		
+
+		interfaceTipo=determinaInterface();
+
 		acesso=telaInicial(interfaceTipo);
 
 		while(acesso){
 			
-			if(interface == pessoaUsuario)
-				menuUsuario(acesso);
+			if(interfaceTipo == pessoaUsuario){
+				menuUsuario();
+				acesso=0;
+				
+			}
 			
-			if(interface == pessoaUsuario)
-				menuFuncionario(acesso);
+			if(interfaceTipo == pessoaFuncionario){
+				menuFuncionario();
+				acesso=0;
+			}		
+
+		}
 			
 			while(decisao!= 's'&& decisao!= 'n'){
 				
-				cout<<"Deseja continuar sair do sistema?(s/n)"<<endl;
-				
+				cout<<"Deseja sair do sistema?(s/n)\n"<<endl;
+
+				if(decisao)
+
+
 				cin>>decisao;
 			}
 			
-			if(decisao == 's')
+			if(decisao == 's'){
 				execucao=0;
+			}
+			if(decisao== 'n')
+				decisao=' ';
 			
-			if(decisao == 'n')
-				acesso=0;
-		}
 	}
 }
 
@@ -91,7 +107,7 @@ int Biblioteca::telaInicial(int tipoUsuario){
 	
 	int telaCadastro=1;
 	int telaCadastro2=1;
-	int telaInicio = 1
+	int telaInicio = 1;
 	int acessoPermitido = 0;
 	char cadastroExistente = ' ';
 	char cadastrar = ' ';
@@ -105,8 +121,9 @@ int Biblioteca::telaInicial(int tipoUsuario){
 		try{
 			while(cadastroExistente != 'n' && cadastroExistente != 's'){	
 			
-				cout<<"Voce possui cadastro na biblioteca?(s/n)"<<endl;
+				cout<<"Voce possui cadastro na biblioteca?(s/n)\n"<<endl;
 				cin>> cadastroExistente;
+			}
 					
 				if(cadastroExistente == 's'){
 					
@@ -116,7 +133,6 @@ int Biblioteca::telaInicial(int tipoUsuario){
 						
 				if(cadastroExistente == 'n')
 					throw LoginInvalido();
-			}
 		}
 			
 			catch(LoginInvalido& invalido){
@@ -127,7 +143,7 @@ int Biblioteca::telaInicial(int tipoUsuario){
 						
 						while(cadastrar != 'n' && cadastrar != 's'){	
 						
-							cout<<"Voce deseja realizar um cadastro na biblioteca?(s/n)"<<endl;
+							cout<<"Voce deseja realizar um cadastro na biblioteca?(s/n)\n"<<endl;
 							
 							cin>> cadastrar;
 						}
@@ -136,14 +152,20 @@ int Biblioteca::telaInicial(int tipoUsuario){
 							
 							while(telaCadastro2){
 								
-								cout<<"Digite seu Nome, seu id e sua senha"<<endl;
-								cin>>idCadastro >>nomeCadastro >> senhaCadastro;
+								cout<<"Digite seu id(inteiro) e sua senha\n"<<endl;
+								cin>>idCadastro >> senhaCadastro;
 								
-								if(administrador->pesquisausuario(idCadastro,senhaCadastro)){
+								cin.ignore();
+								
+								cout<<"Digite seu nome Completo\n"<<endl;
+								getline(cin,nomeCadastro);
+								
+								
+								if(administrador->pesquisaUsuario(idCadastro,senhaCadastro)){
 									
-									cout<<"Erro: O usuario com esse id ja esta cadastrado"<<endl;
+									cout<<"Erro: O usuario com esse id ja esta cadastrado\n"<<endl;
 															
-									cout<<"Tentar novamente?(s/n)"<<endl;
+									cout<<"Tentar novamente?(s/n)\n"<<endl;
 									
 									cin>>novaTentativa;
 									
@@ -152,7 +174,7 @@ int Biblioteca::telaInicial(int tipoUsuario){
 								}
 					
 								else
-									funcionario->cadastrarUsuario(administrador,idCadastro,nomeCadastro,senhaCadastro);
+									administrador->setUsuarioCadastrado(funcionario->cadastrarUsuario(nomeCadastro,senhaCadastro,idCadastro));
 									return 0;
 							}
 						}	
@@ -164,7 +186,7 @@ int Biblioteca::telaInicial(int tipoUsuario){
 				
 				if(tipoUsuario == pessoaFuncionario){
 					
-					cout<<"Falha de Acesso: Esse funcionario nao possui cadastro"<<endl;
+					cout<<"Acesso negado: Confira seu id e senha ou realize um cadastro\n"<<endl;
 					return 0;
 				}
 			}
@@ -179,7 +201,7 @@ int Biblioteca::login(int tipoUsuario){
 	int idUsuario;
 	string senhaUsuario;
 	
-	cout<<"Digite O seu ID e sua senha"<<endl;
+	cout<<"Digite O seu ID e sua senha\n"<<endl;
 	
 	cin>>idUsuario>>senhaUsuario;
 	
@@ -189,11 +211,12 @@ int Biblioteca::login(int tipoUsuario){
 			
 			usuario->setId(idUsuario);
 			usuario->setSenha(senhaUsuario);
+			administrador->atribuiParametrosUsuario(usuario);
 			return 1;
 		}
 	
 		else
-			cout<<"Acesso negado: Confira seu id e senha ou realize um cadastro"<<endl;
+			cout<<"Acesso negado: Confira seu id e senha ou realize um cadastro\n"<<endl;
 			throw LoginInvalido();
 	}
 		
@@ -202,18 +225,17 @@ int Biblioteca::login(int tipoUsuario){
 		if(administrador->pesquisaFuncionario(idUsuario,senhaUsuario)){
 			
 			funcionario->setId(idUsuario);
-			funcionario->setSenha(senhaUsuario);			
+			funcionario->setSenha(senhaUsuario);
+			administrador->atribuiParametrosFuncionario(funcionario);			
 			return 1;
 		}
 		
 		else
-			cout<<"Acesso negado: Confira seu id e senha ou realize um cadastro"<<endl;
 			throw LoginInvalido();
 	}	
 }
 
 void Biblioteca::menuUsuario(){
-	
 	string nomeLivro;
 	string autorLivro;
 	string editoraLivro;
@@ -228,57 +250,84 @@ void Biblioteca::menuUsuario(){
 		
 		while(operacao<1||operacao>11){
 			
-			cout<<"Qual operacao voce deseja realizar?(1/2/3/4/5/6/7/8/9/10/11)"<<endl;
+			cout<<"Qual operacao voce deseja realizar?(1/2/3/4/5/6/7/8/9/10/11)\n"<<endl;
 			
-			cout<<"Reservar Livro(1)"<<endl;
-			cout<<"Alugar Livro(2)"<<endl;
-			cout<<"Devolver Livro(3)"<<endl;
-			cout<<"Reservar Multimidia(4)"<<endl;
-			cout<<"Alugar Multimidia(5)"<<endl;
-			cout<<"Devolver Multimidia(6)"<<endl;
-			cout<<"Imprimir livros alugados(7)"<<endl;
-			cout<<"Imprimir livros reservados(8)"<<endl;
-			cout<<"Pesquisar por livro(9)"<<endl;
-			cout<<"Pesquisar por multimidia(10)"<<endl;
-			cout<<"Fazer logoff(11)"<<endl;
+			cout<<"(1)Reservar Livro\n"<<endl;
+			cout<<"(2)Alugar Livro\n"<<endl;
+			cout<<"(3)Devolver Livro\n"<<endl;
+			cout<<"(4)Reservar Multimidia\n"<<endl;
+			cout<<"(5)Alugar Multimidia\n"<<endl;
+			cout<<"(6)Devolver Multimidia\n"<<endl;
+			cout<<"(7)Imprimir livros alugados\n"<<endl;
+			cout<<"(8)Imprimir livros reservados\n"<<endl;
+			cout<<"(9)Pesquisar por livro\n"<<endl;
+			cout<<"(10)Pesquisar por multimidia\n"<<endl;
+			cout<<"(11)Fazer logoff\n"<<endl;
 			
 			cin>>operacao;
 		}
 		
 		if(operacao==1){
 			
-			cout<<"Digite o titulo e o autor do livro que voce quer reservar"<endl;
-			cin>>nomeLivro>>autorLivro;
+			cin.ignore();
 			
+			cout<<"Digite o titulo, o autor e a editora do livro que voce quer reservar\n"<<endl;
+			
+			getline(cin,nomeLivro);
+			getline(cin,autorLivro);
+			getline(cin,editoraLivro); 
+						
 			Livro livroReservado;
 			
 			livroReservado.setTitulo(nomeLivro);
 			livroReservado.setAutor(autorLivro);
+			livroReservado.setEditora(editoraLivro);
 			
-			usuario->reservarLivro(livroReservado);
-			acervo->mudarDisponibilidadeLivro(livroReservado);
+			if(acervo->pesquisaLivro(livroReservado)&&livroReservado.isDisponivel()){
+				
+				acervo->mudarDisponibilidadeLivro(livroReservado);
+				usuario->reservarLivro(livroReservado);
+				cout<<"Livro reservado com sucesso\n"<<endl;
+			}
+			if(!acervo->pesquisaLivro(livroReservado))
+				cout<<"Livro nao esta disponivel para reserva\n"<<endl;
+			operacao=0;
 		}
 			
 		if(operacao==2){	
 		
-			cout<<"Digite o titulo e o autor do livro que voce quer alugar"<endl;
+			cin.ignore();
+			cout<<"Digite o titulo, o autor e a editora do livro que voce quer alugar\n"<<endl;
 			
-			cin>>nomeLivro>>autorLivro;
+			getline(cin,nomeLivro);
+			getline(cin,autorLivro);
+			getline(cin,editoraLivro); 
 			
 			Livro livroAlugado;
 			
 			livroAlugado.setTitulo(nomeLivro);
 			livroAlugado.setAutor(autorLivro);
+			livroAlugado.setEditora(editoraLivro);
 			
-			acervo->mudarDisponibilidadeLivro(livroAlugado);
-			usuario->alugarLivro(livroAlugado);
-			
+			if(acervo->pesquisaLivro(livroAlugado)){
+				
+				acervo->mudarDisponibilidadeLivro(livroAlugado);
+				usuario->alugarLivro(livroAlugado);
+				cout<<"Livro alugado com sucesso\n"<<endl;
+			}
+			if(!acervo->pesquisaLivro(livroAlugado))
+				cout<<"Livro nao esta disponivel para aluguel\n"<<endl;
+			operacao=0;
+						
 		}
-		if(operacao==3){	
 		
-			cout<<"Digite o titulo do livro que voce quer devolver"<endl;
+		if(operacao==3){
 			
-			cin>>nomeLivro>>nomeAutor;			
+			cin.ignore();		
+			cout<<"Digite o titulo e o autor do livro que voce quer devolver\n"<<endl;
+			
+			getline(cin,nomeLivro);
+			getline(cin,autorLivro);			
 			
 			usuario->devolverLivro(nomeLivro);
 			
@@ -287,29 +336,46 @@ void Biblioteca::menuUsuario(){
 			livroDevolvido.setTitulo(nomeLivro);
 			livroDevolvido.setAutor(autorLivro);
 			
+			
 			acervo->mudarDisponibilidadeLivro(livroDevolvido);
+			operacao=0;
 		}
 		
 		if(operacao==4){	
 		
-			cout<<"Digite o titulo, o autor e o tipo da multimidia que voce quer reservar"<endl;
-			cin>>nomeMultimidia>>autorMultimidia>>tipoMultimidia;
+			cin.ignore();
+			cout<<"Digite o titulo, o autor e o tipo da multimidia que voce quer reservar\n"<<endl;
+			
+			getline(cin,nomeMultimidia);
+			getline(cin,autorMultimidia);
+
+			cin>>tipoMultimidia;
 			
 			Multimidia multimidiaReservado;
 			
 			multimidiaReservado.setTitulo(nomeMultimidia);
 			multimidiaReservado.setAutor(autorMultimidia);
 			multimidiaReservado.setTipo(tipoMultimidia);
-				
-			acervo->mudarDisponibilidadeMultimidia(multimidiaReservado);
-			usuario->reservarMultimidia(multimidiaReservado);
+			
+			if(acervo->pesquisaMultimidia(multimidiaReservado)){			
+				acervo->mudarDisponibilidadeMultimidia(multimidiaReservado);
+				usuario->reservarMultimidia(multimidiaReservado);
+				cout<<"Multimidia reservada com sucesso\n"<<endl;
+			}
+			if(!acervo->pesquisaMultimidia(multimidiaReservado))
+				cout<<"Multimidia nao esta disponivel para reserva\n"<<endl;
+			operacao=0;
 		}
 		
-		if(operacao==5){	
-		
-			cout<<"Digite o titulo, o autor e o tipo da multimidia que voce quer alugar"<endl;
+		if(operacao==5){
 			
-			cin>>nomeMultimidia>>autorMultimidia>>tipoMultimidia;
+			cin.ignore();
+			
+			cout<<"Digite o titulo, o autor e o tipo da multimidia que voce quer alugar:\n"<<endl;
+			
+			getline(cin,nomeMultimidia);
+			getline(cin,autorMultimidia);
+			cin>>tipoMultimidia;
 			
 			Multimidia multimidiaAlugado;
 			
@@ -317,15 +383,25 @@ void Biblioteca::menuUsuario(){
 			multimidiaAlugado.setAutor(autorMultimidia);
 			multimidiaAlugado.setTipo(tipoMultimidia);
 				
-			usuario->alugarMultimidia(multimidiaAlugado);
-			acervo->mudarDisponibilidadeMultimidia(MultimidiaAlugado);
+			if(acervo->pesquisaMultimidia(multimidiaAlugado)){			
+				acervo->mudarDisponibilidadeMultimidia(multimidiaAlugado);
+				usuario->alugarMultimidia(multimidiaAlugado);
+				cout<<"Multimidia alugada com sucesso\n"<<endl;
+			}
+			if(!acervo->pesquisaMultimidia(multimidiaAlugado))
+				cout<<"Multimidia nao esta disponivel para aluguel\n"<<endl;
+			
+			operacao=0;
 		}
 		
 		if(operacao==6){
 			
-			cout<<"Digite o titulo e o autor da multimidia que voce quer devolver"<endl;
+			cin.ignore();
 			
-			cin>>nomeMultimidia>>autorMultimidia;			
+			cout<<"Digite o titulo e o autor da multimidia que voce quer devolver:\n"<<endl;
+			
+			getline(cin,nomeMultimidia);
+			getline(cin,autorMultimidia);				
 			
 			usuario->devolverMultimidia(nomeMultimidia);
 			
@@ -335,51 +411,64 @@ void Biblioteca::menuUsuario(){
 			multimidiaDevolvido.setAutor(autorMultimidia);
 			
 			acervo->mudarDisponibilidadeMultimidia(multimidiaDevolvido);
+			operacao=0;
 		}
 		
 		if(operacao==7){	
 			usuario->imprimeLivrosAlugados();
+			operacao=0;
 		}
 		
 		if(operacao==8){	
 			usuario->imprimeLivrosReservados();
+			operacao=0;
 		}
 		
 		if(operacao==9){
 			
 			while(tipoPesquisa<1||tipoPesquisa>3){
 				
-				cout<<"Voce deseja pesquisar por :"<<endl;
-				cout<<"Titulo do livro(1)"<<endl;
-				cout<<"Nome do autor(2)"<<endl;
-				cout<<"Nome da editora(3)"<<endl;
+				cout<<"Voce deseja pesquisar por :\n"<<endl;
+				cout<<"(1)Titulo do livro\n"<<endl;
+				cout<<"(2)Nome do autor\n"<<endl;
+				cout<<"(3)Nome da editora\n"<<endl;
 				
 				cin>>tipoPesquisa;
 			}
 			if(tipoPesquisa==1){
 				
-				cout<<"Digite o titulo do livro que voce deseja pesquisar"<<endl;
+				cin.ignore();
 				
-				cin>>nomeLivro;
+				cout<<"Digite o titulo do livro que voce deseja pesquisar:\n";
+				
+				getline(cin,nomeLivro);
 				
 				acervo->procuraLivro(nomeLivro,tipoPesquisa);
+				tipoPesquisa=0;
+				operacao=0;
 			}
 				
 			if(tipoPesquisa==2){
 				
-				cout<<"Digite o autor do livro que voce deseja pesquisar"<<endl;
+				cin.ignore();
 				
-				cin>>autorLivro;
+				cout<<"Digite o autor do livro que voce deseja pesquisar:\n"<<endl;
+				
+				getline(cin,autorLivro);
 				
 				acervo->procuraLivro(autorLivro,tipoPesquisa);
+				tipoPesquisa=0;
+				operacao=0;
 			}
 				
 			if(tipoPesquisa==3){
 				
-				cout<<"Digite a editora do livro que voce deseja pesquisar"<<endl;
+				cout<<"Digite a editora do livro que voce deseja pesquisar:\n"<<endl;
 				cin>>editoraLivro;
 				
 				acervo->procuraLivro(editoraLivro,tipoPesquisa);
+				tipoPesquisa=0;
+				operacao=0;
 			}		
 			
 		}
@@ -388,29 +477,37 @@ void Biblioteca::menuUsuario(){
 		
 			while(tipoPesquisa<1||tipoPesquisa>2){
 				
-				cout<<"Voce deseja pesquisar por :"<<endl;
-				cout<<"Titulo da multimidia(1)"<<endl;
-				cout<<"Nome do autor(2)"<<endl;
+				cout<<"Voce deseja pesquisar por :\n"<<endl;
+				cout<<"(1)Titulo da multimidia\n"<<endl;
+				cout<<"(2)Nome do autor\n"<<endl;
 				
 				cin>>tipoPesquisa;
 			}
 			
 			if(tipoPesquisa==1){
 				
-				cout<<"Digite o titulo da multimidia que voce deseja pesquisar"<<endl;
+				cin.ignore();
 				
-				cin>>nomeMultimidia;
+				cout<<"Digite o titulo da multimidia que voce deseja pesquisar:\n"<<endl;
+				
+				getline(cin,nomeMultimidia);
 				
 				acervo->procuraMultimidia(nomeMultimidia,tipoPesquisa);
+				tipoPesquisa=0;
+				operacao=0;
 			}
 				
 			if(tipoPesquisa==2){
 				
-				cout<<"Digite o autor da multimidia que voce deseja pesquisar"<<endl;
+				cin.ignore();
 				
-				cin>>autorMultimidia;
+				cout<<"Digite o autor da multimidia que voce deseja pesquisar:\n"<<endl;
 				
-				acervo->procuraMultimidia(autorMultimidia,tipoPesquisa);
+				getline(cin,autorMultimidia);
+				
+				acervo->procuraLivro(autorMultimidia,tipoPesquisa);
+				tipoPesquisa=0;
+				operacao=0;
 			}
 		}
 		
@@ -430,98 +527,149 @@ void Biblioteca::menuFuncionario(){
 	
 	while(menu){
 
-		while(operacao<1||operacao>7){
+		while(operacao<1||operacao>9){
 			
-			cout<<"Qual operacao voce deseja realizar?(1/2/3/4/5/6/7/8/9)"<<endl;
+			cout<<"Qual operacao voce deseja realizar?(1/2/3/4/5/6/7/8/9)\n"<<endl;
 			
-			cout<<"Adicionar livro ao acervo da bibliteca(1)"<<endl;
-			cout<<"Remover livro do acervo da biblioteca(2)"<<endl;
-			cout<<"Adicionar multimidia ao acervo da bibliteca(3)"<<endl;
-			cout<<"Remover multimidia do acervo da biblioteca(4)"<<endl;
-			cout<<"Cadastrar novo usuario da biblioteca(5)"<<endl;
-			cout<<"Cadastrar novo funcionario da biblioteca(6)"<<endl;
-			cout<<"Imprimir colecao de livros(7)"<<endl;
-			cout<<"Imprimir colecao de multimidia(8)"<<endl;
-			cout<<"Fazer logoff(9)"<<endl;
+			cout<<"(1)Adicionar livro ao acervo da bibliteca\n"<<endl;
+			cout<<"(2)Remover livro do acervo da biblioteca\n"<<endl;
+			cout<<"(3)Adicionar multimidia ao acervo da bibliteca\n"<<endl;
+			cout<<"(4)Remover multimidia do acervo da biblioteca\n"<<endl;
+			cout<<"(5)Cadastrar novo usuario da biblioteca\n"<<endl;
+			cout<<"(6)Cadastrar novo funcionario da biblioteca\n"<<endl;
+			cout<<"(7)Imprimir colecao de livros\n"<<endl;
+			cout<<"(8)Imprimir colecao de multimidia\n"<<endl;
+			cout<<"(9)Fazer logoff\n"<<endl;
 			
 			cin>>operacao;
 		}
 		
 		if(operacao == 1){
 			
-			cout<<"Digite o titulo, o autor e a editora do livro que voce quer adicionar"<endl;
+			cin.ignore();
 			
-			cin>>nomeLivro>>autorLivro>>editoraLivro;
+			cout<<"Digite o titulo, o autor e a editora do livro que voce quer adicionar:\n"<<endl;
 			
+			getline(cin,nomeLivro);
+			getline(cin,autorLivro);		
+			getline(cin,editoraLivro);
+					
 			funcionario->adicionarLivros(acervo,nomeLivro,autorLivro,editoraLivro);
+			std::cout<<"Livro adicionado com sucesso\n"<<std::endl;
+			operacao=0;
 		}
 			
 		
 		if(operacao == 2){
 			
-			cout<<"Digite o titulo, o autor e a editora do livro que voce quer remover"<endl;
+			cin.ignore();
 			
-			cin>>nomeLivro>>autorLivro>>editoraLivro;
+			cout<<"Digite o titulo, o autor e a editora do livro que voce quer remover:\n"<<endl;
+			
+			getline(cin,nomeLivro);
+			getline(cin,autorLivro);			
+			getline(cin,editoraLivro);
 			
 			funcionario->removerLivros(acervo,nomeLivro,autorLivro,editoraLivro);
+			operacao=0;
 		}	
 		
 		
 		if(operacao == 3){
 			
-			cout<<"Digite o titulo, o autor,a produtora e o tipo da multimidia que voce quer adicionar"<endl;
+			cin.ignore();
 			
-			cin>>nomeMultimidia>>autorMultimidia>>produtoraMultimidia>>tipoMultimidia;
+			cout<<"Digite o titulo, o autor,a produtora e o tipo da multimidia que voce quer adicionar:\n"<<endl;
+			
+			getline(cin,nomeMultimidia);
+			getline(cin,autorMultimidia);
+			getline(cin,produtoraMultimidia);
+			
+			cin>>tipoMultimidia;
 			
 			funcionario->adicionarMultimidias(acervo,nomeMultimidia,autorMultimidia,produtoraMultimidia,tipoMultimidia);
+			std::cout<<"Multimidia adicionada com sucesso\n"<<std::endl;	
+			operacao=0;
 		}	
 
 		if(operacao == 4){
 			
-			cout<<"Digite o titulo, o autor,a produtora e o tipo da multimidia que voce quer remover"<endl;
+			cin.ignore();
 			
-			cin>>nomeMultimidia>>autorMultimidia>>produtoraMultimidia>>tipoMultimidia;
+			cout<<"Digite o titulo, o autor,a produtora e o tipo da multimidia que voce quer remover:\n"<<endl;
+			
+			getline(cin,nomeMultimidia);
+			getline(cin,autorMultimidia);
+			getline(cin,produtoraMultimidia);
+			
+			cin>>tipoMultimidia;
 			
 			funcionario->removerMultimidias(acervo,nomeMultimidia,autorMultimidia,produtoraMultimidia,tipoMultimidia);
+			operacao=0;
 		}			
 		
 		if(operacao==5){
-			cout<<"Digite o nome completo"<<endl;
-			cin>>nomeUsuario;
-			cout<<"Digite o login(numero inteiro) e uma nova senha para o usuario"<<endl;
+			
+			cin.ignore();
+			
+			cout<<"Digite o nome completo:\n"<<endl;
+			
+			getline(cin,nomeUsuario);
+			
+			cout<<"Digite o login(numero inteiro) e uma nova senha para o usuario:\n"<<endl;
 			cin>>userUsuario>>senhaUsuario;
 			
-			if(administrador->pesquisausuario(userUsuario,senhaUsuario)){
-				cout<<"Erro: esse usuario ja esta cadastrado"<<endl;
+			if(administrador->pesquisaUsuario(userUsuario,senhaUsuario)){
+				cout<<"Erro: esse usuario ja esta cadastrado\n"<<endl;
+				operacao=0;
 			}
 			else
-				funcionario->cadastrarUsuario(administrador, nomeUsuario, senhaUsuario, userUsuario);
+				administrador->setUsuarioCadastrado(funcionario->cadastrarUsuario(nomeUsuario,senhaUsuario,userUsuario));
+				operacao=0;
 		}
 		
 		if(operacao==6){
-			cout<<"Digite o nome completo"<<endl;
-			cin>>nomeFuncionario;
-			cout<<"Digite o login(numero inteiro) e uma nova senha para o funcionario"<<endl;
+			
+			cin.ignore();
+			
+			cout<<"Digite o nome completo:\n"<<endl;
+			getline(cin,nomeFuncionario);
+			
+			cout<<"Digite o login(numero inteiro) e uma nova senha para o funcionario:\n"<<endl;
 			cin>>userFuncionario>>senhaFuncionario;
 			
 			if(administrador->pesquisaFuncionario(userFuncionario,senhaFuncionario)){
-				cout<<"Erro: esse funcionario ja esta cadastrado"<<endl;
+				cout<<"Erro: esse funcionario ja esta cadastrado\n"<<endl;
+				operacao=0;
 			}
 			else
-				funcionario->cadastrarFuncionario(administrador, nomeFuncionario, senhaFuncionario, userFuncionario);	
+				administrador->setFuncionarioCadastrado(funcionario->cadastrarFuncionario(nomeFuncionario,senhaFuncionario,userFuncionario));	
+				operacao=0;
 		}
 		
-		if(operacao == 7)	
+		if(operacao == 7){	
 			acervo->listarLivros();
+			operacao=0;
+		}
 			
-		if(operacao == 8)				
+		if(operacao == 8){				
 			acervo->listarMultimidia();
+			operacao=0;
+		}
 		
-		if(operacao == 9)
+		if(operacao == 9){
 			menu=0;
+		}
 	}	
 }
 
 void Biblioteca::desalocaDados(){
+	delete usuario;
+	delete funcionario;
+	delete administrador;
+	delete acervo;
+}
 	
+Biblioteca::~Biblioteca(){
+
 }
