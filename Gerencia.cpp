@@ -5,13 +5,13 @@ Gerencia::Gerencia(){}
 void Gerencia::setUsuarioCadastrado(Usuario novo){
 	
 	_usuariosCadastrados.push_back(novo);
-	cout<<"Usuario cadastrado com sucesso"<<endl;
+	cout<<"Usuario cadastrado com sucesso\n"<<endl;
 }
 
 void Gerencia::setFuncionarioCadastrado(Funcionario novo){
 	
 	_funcionariosCadastrados.push_back(novo);
-	cout<<"Funcionario cadastrado com sucesso"<<endl;
+	cout<<"Funcionario cadastrado com sucesso\n"<<endl;
 }
 
 int Gerencia::pesquisaFuncionario(int idCadastro, string senhaCadastro){
@@ -34,4 +34,32 @@ int Gerencia::pesquisaUsuario(int idCadastro, string senhaCadastro){
 		}			
 	}
 	return 0;	
+}
+
+void Gerencia::atribuiParametrosUsuario(Usuario *usuario){
+
+	int i=0;
+
+	for(int i=0;i<_usuariosCadastrados.size();i++)
+		
+		if(usuario->getId() ==_usuariosCadastrados[i].getId()&&usuario->getSenha()==_usuariosCadastrados[i].getSenha()){
+			
+			usuario->setNome(_usuariosCadastrados[i].getNome());
+			_usuariosCadastrados[i].atribuiItens(usuario);
+
+		}
+
+}
+
+void Gerencia::atribuiParametrosFuncionario(Funcionario *funcionario){
+		int i=0;
+
+	for(int i=0;i<_funcionariosCadastrados.size();i++)
+		
+		if(funcionario->getId() ==_funcionariosCadastrados[i].getId()&&funcionario->getSenha()==_funcionariosCadastrados[i].getSenha()){
+			
+			funcionario->setNome(_funcionariosCadastrados[i].getNome());
+
+		}
+
 }
