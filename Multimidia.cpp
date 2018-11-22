@@ -27,5 +27,6 @@ void Multimidia::imprimeCampos(){
 	cout<<"\nAutor : "<<getAutor()<<endl;
 	cout<<"\nProdutora : "<<getEditora()<<endl;
 	cout<<"\nTipo : "<<getTipo()<<endl;
+	cout<<"--------------------------------------------------\n"<<endl;
 	
 }
