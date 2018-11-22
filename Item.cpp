@@ -31,10 +31,13 @@ string Item::getAutor(){
 		
 string Item::getEditora(){
 		return _editora;
-}		
+}
+bool Item::isDisponivel(){
+		return this->_disponibilidade;
+}			
 void Item::imprimeCampos(){
 
-	cout<<"Título : "<<getTitulo()<<endl;
-	cout<<"Autor : "<<getAutor()<<endl;
-	cout<<"Editora : "<<getEditora()<<endl;
+	cout<<"\nTitulo : "<<getTitulo()<<endl;
+	cout<<"\nAutor : "<<getAutor()<<endl;
+	cout<<"\nEditora : "<<getEditora()<<endl;
 }
