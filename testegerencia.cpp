@@ -1,4 +1,5 @@
-#include "doctest.h"
+#define CATCH_CONFIG_ALL_PARTS
+#include "catch.hpp"
 
 #include "Gerencia.hpp"
 #include "Pessoa.hpp"
