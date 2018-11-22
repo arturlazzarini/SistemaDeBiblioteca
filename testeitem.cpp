@@ -1,4 +1,4 @@
-#define CATCH_CONFIG_ALL_PARTS
+#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
 #include "Item.hpp"
@@ -11,7 +11,7 @@ TEST_CASE("Testa Gets, Sets e Construtor"){
 	novo.setEditora("Globo");
 
 	if(novo.getTitulo() == "Guerra e Paz" && novo.getAutor() == "Liev Tolstoi"){
-		CHECK(novo.getEditora() == "Globo");
+		REQUIRE(novo.getEditora() == "Globo");
 	}
 
 }
