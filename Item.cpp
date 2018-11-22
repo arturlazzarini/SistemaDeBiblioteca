@@ -40,4 +40,5 @@ void Item::imprimeCampos(){
 	cout<<"\nTitulo : "<<getTitulo()<<endl;
 	cout<<"\nAutor : "<<getAutor()<<endl;
 	cout<<"\nEditora : "<<getEditora()<<endl;
+	cout<<"--------------------------------------------------\n"<<endl;
 }
