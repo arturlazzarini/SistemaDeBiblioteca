@@ -5,7 +5,7 @@ Livro::Livro(){}
 Livro::Livro(string titulo, string autor, string editora, bool disponibilidade) : Item(titulo,autor,editora,disponibilidade){}
 
 bool Livro::isDisponivel(){
-	return this->_disponivel;
+	return this->_disponibilidade;
 }
 
 void Livro::mudarDisponibilidade(){
@@ -13,7 +13,7 @@ void Livro::mudarDisponibilidade(){
 }
 
 void Livro::imprimeCampos(){
-	cout<<"Título : "<<getTitulo()<<endl;
-	cout<<"Autor : "<<getAutor()<<endl;
-	cout<<"Editora : "<<getEditora()<<endl;
+	cout<<"\nTitulo : "<<getTitulo()<<endl;
+	cout<<"\nAutor : "<<getAutor()<<endl;
+	cout<<"\nEditora : "<<getEditora()<<endl;
 }
