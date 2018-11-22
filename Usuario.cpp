@@ -17,22 +17,12 @@ void Usuario::reservarLivro(Livro item){
 }
 
 void Usuario::devolverLivro(string item){
-
-	std::sort(_livrosAlugados.begin(), _livrosAlugados.end()); 
-	int j = 0;
-
-	while(j<_livrosAlugados.size()){
-      //check de colisão
-      if ((_livrosAlugados[j]).compare(item) != 0){
-        j++;
-      }
-      
-      //apago o item repetido (modificando o tamanho do vector)
-      else if ((_livrosAlugados[j]).compare(item) == 0){
-        _livrosAlugados.erase(_livrosAlugados.begin()+j);
-        break;
-      }
-  }
+	for(int i=0;i <_livrosAlugados.size() ;i++){
+		
+		if(_livrosAlugados[i].getTitulo() == item){
+				_livrosAlugados.erase(_livrosAlugados.begin()+i);
+		}
+	}
 }
 
 void Usuario::alugarMultimidia(Multimidia item){
@@ -46,70 +36,97 @@ void Usuario::reservarMultimidia(Multimidia item){
 }
 
 void Usuario::devolverMultimidia(string item){
-
-	std::sort(_multimiidiaAlugados.begin(), _multimidiaAlugados.end()); 
-	int j = 0;
-
-	while(j<_multimidiaAlugados.size()){
-      //check de colisão
-      if ((_multimidiaAlugados[j]).compare(item) != 0){
-        j++;
-      }
-      
-      //apago o item repetido (modificando o tamanho do vector)
-      else if ((_multimidiaAlugados[j]).compare(item) == 0){
-        _multimidiaAlugados.erase(_multimidiaAlugados.begin()+j);
-        break;
-      }
-
-  	}
+	
+	int naoExiste=0;
+	
+	for(int i=0;i <_multimidiaAlugados.size() ;i++){
+		
+		if(_multimidiaAlugados[i].getTitulo() == item){
+				_multimidiaAlugados.erase(_multimidiaAlugados.begin()+i);
+				cout<<"Multimidia devolvida com sucesso"<<endl;
+		}
+		else
+			naoExiste++;
+	}
+	if(naoExiste==_multimidiaAlugados.size())
+		cout<<"esta multimidia nao estava alugada"<<endl;
 }
 
 void Usuario::imprimeLivrosAlugados(){
 
   if(_livrosAlugados.empty()){
-    cout<<"Voce nao possui nenhum livro alugado"<<endl; 
-    return;   
+    cout<<"Voce nao possui nenhum livro alugado"<<endl;    
   }
-
-  for(int i=0; i<_livrosAlugados.size(); i++){
-	_livrosAlugados[i].imprimirCampos();
-  }
+	else	
+		for(int i=0; i<_livrosAlugados.size(); i++){
+			_livrosAlugados[i].imprimeCampos();
+		}
 }
 
 void Usuario::imprimeMultimidiaAlugados(){
 
-  if(_livrosAlugados.empty()){
-    cout<<"Voce nao possui nenhuma multimidia alugada"<<endl; 
-    return;   
+  if(_multimidiaAlugados.empty()){
+    cout<<"Voce nao possui nenhuma multimidia alugada\n"<<endl; 
   }
-
-  for(int i=0; i<_multimidiaAlugados.size(); i++){
-	_multimidiaAlugados[i].imprimirCampos();
-  }
+	else	
+		for(int i=0; i<_multimidiaAlugados.size(); i++){
+			_multimidiaAlugados[i].imprimeCampos();
+		}
 }
 
 void Usuario::imprimeLivrosReservados(){
 
-  if(_livrosAlugados.empty()){
-    cout<<"Voce nao possui nenhum livro reservado"<<endl; 
-    return;   
+  if(_livrosReservados.empty()){
+    cout<<"Voce nao possui nenhum livro reservado\n"<<endl;   
   }
 
-  for(int i=0; i<_livrosReservados.size(); i++){
-	_livrosReservados[i].imprimirCampos();
-  }
+  else
+	  for(int i=0; i<_livrosReservados.size(); i++){
+		_livrosReservados[i].imprimeCampos();
+		}
 }
 
 void Usuario::imprimeMultimidiaReservados(){
 
-  if(_livrosAlugados.empty()){
-    cout<<"Voce nao possui nenhuma multimidia reservada"<<endl; 
-    return;   
+  if(_livrosReservados.empty()){
+    cout<<"Voce nao possui nenhuma multimidia reservada\n"<<endl;    
   }
 
-  for(int i=0; i<_multimidiaReservados.size(); i++){
-	_multimidiaReservados[i].imprimirCampos();
+  else 
+	  for(int i=0; i<_multimidiaReservados.size(); i++){
+		_multimidiaReservados[i].imprimeCampos();
+	  }
+}
 
-  }
+void Usuario::atribuiItens(Usuario *usuario){
+	int i;
+
+	if(!_livrosAlugados.empty()){
+
+		for(i=0;i<_livrosAlugados.size();i++){
+			usuario->_livrosAlugados.push_back(_livrosAlugados[i]);
+		}
+
+	}
+	if(!_livrosReservados.empty()){
+
+		for(i=0;i<_livrosReservados.size();i++){
+			usuario->_livrosReservados.push_back(_livrosReservados[i]);
+		}
+
+	}
+	if(!_multimidiaAlugados.empty()){
+
+		for(i=0;i<_multimidiaAlugados.size();i++){
+			usuario->_multimidiaAlugados.push_back(_multimidiaAlugados[i]);
+		}
+
+	}
+	if(!_multimidiaReservados.empty()){
+		
+		for(i=0;i<_multimidiaReservados.size();i++){
+			usuario->_multimidiaReservados.push_back(_multimidiaReservados[i]);
+		}
+
+	}
 }
