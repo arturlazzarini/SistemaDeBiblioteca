@@ -42,7 +42,6 @@ public:
 	void menuFuncionario();
 	int login(int tipoUsuario);
 	void desalocaDados();
-	void imprimeLinhas();
 	~Biblioteca();
 };
 class LoginInvalido: public std::exception{
@@ -52,11 +51,5 @@ class LoginInvalido: public std::exception{
             return "LoginInvalido";
         }
 };
-class EntradaInvalida: public std::exception{
 
-        virtual const char* what()const throw(){
-
-            return "EntradaInvalida";
-        }
-};
 #endif
